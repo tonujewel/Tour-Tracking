@@ -7,6 +7,7 @@ class Style {
   static final Color backgroundColor = Color(0xffCFDBE5);
   static final Color textColor = Color(0xFF001F6E);
   static final Color hintsColor = Color(0xFF7080ab);
+  static final Color demoColor = Color(0xFF7080ab);
 
 
 
