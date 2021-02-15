@@ -24,6 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
   });
 
   GoogleMapController mapController;
+
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
     // mapController.setMapStyle('[{"featureType": "all","stylers": [{ "color": "#C0C0C0" }]},{"featureType": "road.arterial","elementType": "geometry","stylers": [{ "color": "#CCFFFF" }]},{"featureType": "landscape","elementType": "labels","stylers": [{ "visibility": "off" }]}]');
@@ -42,13 +43,16 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: Text('Maps Sample App'),
-          backgroundColor: Colors.green[700],
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            successSnackbar("clicked");
+          },
+          child: Icon(Icons.add),
         ),
         body: GoogleMap(
           mapType: MapType.normal,
-          initialCameraPosition: CameraPosition(target: LatLng(23.7985053, 90.3842538), zoom: 13),
+          initialCameraPosition:
+              CameraPosition(target: LatLng(23.7985053, 90.3842538), zoom: 13),
           onMapCreated: _onMapCreated,
           markers: Set.from(markers),
         ),
