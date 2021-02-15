@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tourtracking/utils/appConstant.dart';
 import 'package:tourtracking/view/auth/sign_up.dart';
-import 'package:tourtracking/view/home/home_screen.dart';
+import 'package:tourtracking/view/main_screen/main_screen.dart';
 
 
 class LoginController extends GetxController {
@@ -11,6 +11,13 @@ class LoginController extends GetxController {
   TextEditingController passwordController = TextEditingController();
 
   var isLoading = false.obs;
+
+  @override
+  void onInit() {
+    emailController.text="tonujewel@gmail.com";
+    passwordController.text="123456";
+    super.onInit();
+  }
 
   void doLogin() async {
     if (emailController.text.isEmpty) {
@@ -26,9 +33,10 @@ class LoginController extends GetxController {
         print("user email ${userCredential.user.email}");
         successSnackbar("Login success");
         isLoading.value = false;
-        Get.offAll(HomeScreen());
+        Get.offAll(MainScreen());
       } on FirebaseAuthException catch (e) {
         isLoading.value = false;
+        print("$e");
         if (e.code == 'user-not-found') {
           errorSnackbar('No user found for that email.');
         } else if (e.code == 'wrong-password') {

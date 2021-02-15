@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:tourtracking/model/user_model.dart';
 import 'package:tourtracking/utils/appConstant.dart';
-import 'package:tourtracking/view/home/home_screen.dart';
+import 'package:tourtracking/view/bottom_navigation/home_screen.dart';
 
 
 class SignUpController extends GetxController {

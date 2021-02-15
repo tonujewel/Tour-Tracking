@@ -7,7 +7,7 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:733929259627:android:787a67ab99745ab16ca72e",
+        "mobilesdk_app_id": "1:733929259627:android:5420b3a3a861c41d6ca72e",
         "android_client_info": {
           "package_name": "com.tonujewel.tourtracking"
         }
@@ -20,7 +20,7 @@
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyA-C5bXBXsXwhyJYnLb_VM9Vy28NHdwl50"
+          "current_key": "AIzaSyC9t-Ax_J0u9VYqMcbGt390RVc0btqUxkU"
         }
       ],
       "services": {

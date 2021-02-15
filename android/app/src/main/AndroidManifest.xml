@@ -8,7 +8,9 @@
     <application
         android:name="io.flutter.app.FlutterApplication"
         android:label="tourtracking"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+        android:usesCleartextTraffic="true"
+        >
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
@@ -33,6 +35,8 @@
               android:name="io.flutter.embedding.android.SplashScreenDrawable"
               android:resource="@drawable/launch_background"
               />
+
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -43,5 +47,7 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+        <meta-data android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyC9t-Ax_J0u9VYqMcbGt390RVc0btqUxkU"/>
     </application>
 </manifest>
