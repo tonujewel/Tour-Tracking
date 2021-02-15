@@ -20,7 +20,7 @@ class LoginController extends GetxController {
       isLoading.value = true;
       try {
         UserCredential userCredential = await FirebaseAuth.instance
-            .signInWithEmailAndPassword(email: "barry.allen@example.com", password: "SuperSecretPassword!");
+            .signInWithEmailAndPassword(email: emailController.text.trim(), password: passwordController.text.trim());
 
         print("user email ${userCredential.user.email}");
         successSnackbar("Login success");

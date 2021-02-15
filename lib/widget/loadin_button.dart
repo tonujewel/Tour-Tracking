@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tourtracking/style/style.dart';
 
 class LoadingButton extends StatefulWidget {
   final Widget childs;
@@ -14,12 +13,12 @@ class LoadingButton extends StatefulWidget {
   const LoadingButton(
       {Key key,
       this.childs,
-      @required this.onPressed,
-      @required this.isLoading,
+      this.onPressed,
+      this.isLoading = false,
       this.backgroundColor,
       this.decoration,
       this.loadingWidget,
-      @required this.text,
+        this.text,
       this.defaultStyle = false})
       : super(key: key);
 
@@ -41,7 +40,7 @@ class _LoadingButtonState extends State<LoadingButton> {
   void buildDecoration() {
     decoration = widget.decoration ??
         BoxDecoration(
-          color: widget.backgroundColor ?? Style.buttonColor,
+          color: widget.backgroundColor ?? Theme.of(context).primaryColor,
           borderRadius: BorderRadius.circular(10),
         );
   }
@@ -63,7 +62,6 @@ class _LoadingButtonState extends State<LoadingButton> {
   double mainWidth;
   static double padding = 16.0;
   static double textSizeBig = 16.0;
-
   @override
   Widget build(BuildContext context) {
     mainWidth = MediaQuery.of(context).size.width;
@@ -74,7 +72,6 @@ class _LoadingButtonState extends State<LoadingButton> {
         onTap: widget.isLoading ? null : widget.onPressed,
         child: AnimatedContainer(
           padding: widget.isLoading ? EdgeInsets.all(10) : EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-          //padding: widget.isLoading ? EdgeInsets.only(left: 10,right: 10) : EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           duration: Duration(milliseconds: 200),
           curve: Curves.easeInOut,
           decoration: widget.isLoading ? decoration.copyWith(borderRadius: BorderRadius.circular(100)) : decoration,
@@ -86,7 +83,8 @@ class _LoadingButtonState extends State<LoadingButton> {
                   alignment: Alignment.center,
                   child: Text(
                     "${widget.text}",
-                    style: TextStyle(color: Style.textColor, fontSize: textSizeBig, fontWeight: FontWeight.bold),
+                    style:
+                        TextStyle(color: Colors.white, fontSize: textSizeBig, fontWeight: FontWeight.bold),
                   ),
                 ),
         ),

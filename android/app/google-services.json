@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "733929259627",
+    "project_id": "tour-tracking-d9969",
+    "storage_bucket": "tour-tracking-d9969.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:733929259627:android:787a67ab99745ab16ca72e",
+        "android_client_info": {
+          "package_name": "com.tonujewel.tourtracking"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "733929259627-en2ot8igantpfhfi247a16eanoj54nrc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-C5bXBXsXwhyJYnLb_VM9Vy28NHdwl50"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "733929259627-en2ot8igantpfhfi247a16eanoj54nrc.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "733929259627-fhnv5i0aogm6ijrcuc0lprcs9e6c3667.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.tonujewel.tourtracking"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -5,7 +5,6 @@ import 'package:tourtracking/style/style.dart';
 import 'package:tourtracking/widget/customTextField.dart';
 import 'package:tourtracking/widget/loadin_button.dart';
 
-
 class SignUp extends StatelessWidget {
   var controller = Get.put(SignUpController());
 
@@ -17,41 +16,38 @@ class SignUp extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.only(left: 30, right: 30),
         child: ListView(
+          physics: BouncingScrollPhysics(),
           children: [
-            SizedBox(height: size.height * .2),
-            Text("Sign Up",
-                style: TextStyle(
-                    color: Style.textColor,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 30)),
-            SizedBox(height: size.height * .04),
-            CustomTextField(
-                controller: controller.nameController, hints: "Name"),
-            SizedBox(height: size.height * .03),
-            CustomTextField(
-                controller: controller.emailController, hints: "Email"),
-            SizedBox(height: size.height * .03),
-            CustomTextField(
-                controller: controller.passwordController,
-                hints: "Password",
-                obscure: true),
-            SizedBox(height: size.height * .03),
-            CustomTextField(
-                controller: controller.confirmPasswordController,
-                hints: "Confirm Password",
-                obscure: true),
-            SizedBox(height: size.height * .03),
-            Obx(() => LoadingButton(
-                  onPressed: () {
-                    controller.doSignUp();
-                  },
-                  text: "Sign Up",
-                  isLoading: controller.isLoading.value,
-                )),
-            SizedBox(height: size.height * .03),
-            Center(
-                child: Text("Already have account?",
-                    style: TextStyle(color: Style.textColor, fontSize: 16))),
+            Expanded(
+              child: Column(
+                children: [
+                  SizedBox(height: size.height * .2),
+                  Text("Sign Up", style: TextStyle(color: Style.textColor, fontWeight: FontWeight.bold, fontSize: 30)),
+                  SizedBox(height: size.height * .04),
+                  CustomTextField(controller: controller.nameController, hints: "Name"),
+                  SizedBox(height: size.height * .03),
+                  CustomTextField(controller: controller.emailController, hints: "Email"),
+                  SizedBox(height: size.height * .03),
+                  CustomTextField(controller: controller.passwordController, hints: "Password", obscure: true),
+                  SizedBox(height: size.height * .03),
+                  CustomTextField(controller: controller.confirmPasswordController, hints: "Confirm Password", obscure: true),
+                  SizedBox(height: size.height * .03),
+                  Obx(
+                    () => LoadingButton(
+                      isLoading: controller.isLoading.value,
+                      defaultStyle: true,
+                      onPressed: () {
+                        controller.doSignUp();
+                      },
+                      backgroundColor: Style.buttonColor,
+                      text: "Sign Up",
+                    ),
+                  ),
+                  SizedBox(height: size.height * .03),
+                  Center(child: Text("Already have account?", style: TextStyle(color: Style.textColor, fontSize: 16))),
+                ],
+              ),
+            ),
           ],
         ),
       ),

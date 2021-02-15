@@ -17,29 +17,40 @@ class LoginScreen extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.only(left: 30, right: 30),
         child: ListView(
+          physics: BouncingScrollPhysics(),
           children: [
-            SizedBox(height: size.height * .2),
-            Text("Sign In", style: TextStyle(color: Style.textColor, fontWeight: FontWeight.bold, fontSize: 30)),
-            SizedBox(height: size.height * .04),
-            CustomTextField(controller: controller.emailController, hints: "Email"),
-            SizedBox(height: size.height * .03),
-            CustomTextField(controller: controller.passwordController, hints: "Password", obscure: true),
-            SizedBox(height: size.height * .03),
-            Obx(() => LoadingButton(
-                isLoading: controller.isLoading.value,
-                onPressed: () {
-                  controller.doLogin();
-                },
-                text: "Sign In")),
-            SizedBox(height: size.height * .03),
-            Center(child: Text("Forgot password?", style: TextStyle(color: Style.textColor, fontSize: 16))),
-            SizedBox(height: size.height * .03),
-            GestureDetector(
-                onTap: () {
-                  controller.goToSignUpPage();
-                },
-                child:
-                    Center(child: Text("Don't have account?", style: TextStyle(color: Style.textColor, fontSize: 16)))),
+            Expanded(
+              child: Column(
+                children: [
+                  SizedBox(height: size.height * .2),
+                  Text("Sign In", style: TextStyle(color: Style.textColor, fontWeight: FontWeight.bold, fontSize: 30)),
+                  SizedBox(height: size.height * .04),
+                  CustomTextField(controller: controller.emailController, hints: "Email"),
+                  SizedBox(height: size.height * .03),
+                  CustomTextField(controller: controller.passwordController, hints: "Password", obscure: true),
+                  SizedBox(height: size.height * .04),
+                  Obx(() => LoadingButton(
+                      isLoading: controller.isLoading.value,
+                      defaultStyle: true,
+                      onPressed: () {
+                        controller.doLogin();
+                      },
+                      backgroundColor: Style.buttonColor,
+                      text: "Login",
+                    ),
+                  ),
+                  SizedBox(height: size.height * .03),
+                  Center(child: Text("Forgot password?", style: TextStyle(color: Style.textColor, fontSize: 16))),
+                  SizedBox(height: size.height * .03),
+                  GestureDetector(
+                      onTap: () {
+                        controller.goToSignUpPage();
+                      },
+                      child:
+                          Center(child: Text("Don't have account?", style: TextStyle(color: Style.textColor, fontSize: 16)))),
+                ],
+              ),
+            ),
           ],
         ),
       ),
