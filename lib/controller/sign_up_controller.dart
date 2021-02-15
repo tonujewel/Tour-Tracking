@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:tourtracking/model/user_model.dart';
 import 'package:tourtracking/utils/appConstant.dart';
+import 'package:tourtracking/view/home/home_screen.dart';
 
 
 class SignUpController extends GetxController {
@@ -47,15 +48,6 @@ class SignUpController extends GetxController {
           .then((result) async {
         print('uID: ' + result.user.uid);
         print('email: ' + result.user.email);
-        //get photo url from gravatar if user has one
-        // Gravatar gravatar = Gravatar(email);
-        // String gravatarUrl = gravatar.imageUrl(
-        //   size: 200,
-        //   defaultImage: GravatarImage.retro,
-        //   rating: GravatarRating.pg,
-        //   fileExtension: true,
-        // );
-        //create the new user object
         UserModel _newUser = UserModel(
             uid: result.user.uid,
             email: result.user.email,
@@ -66,7 +58,10 @@ class SignUpController extends GetxController {
         _updateUserFirestore(_newUser, result.user);
       });
       return true;
-    } catch (e) {
+    } on FirebaseAuthException catch (e) {
+      isLoading.value = false;
+      print("${e.message}");
+      errorSnackbar("${e.message}");
       return false;
     }
   }
@@ -74,11 +69,13 @@ class SignUpController extends GetxController {
 
   //updates the firestore users collection
   void _updateUserFirestore(UserModel user, User firebaseUser) {
+    isLoading.value = false;
+    successSnackbar("Sign up success");
     _db
         .doc('/users/${firebaseUser.uid}')
         .set(user.toJson());
 
     isLoading.value = false;
-
+    Get.offAll(HomeScreen());
   }
 }

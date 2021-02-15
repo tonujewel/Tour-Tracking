@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tourtracking/utils/appConstant.dart';
 import 'package:tourtracking/view/auth/sign_up.dart';
+import 'package:tourtracking/view/home/home_screen.dart';
 
 
 class LoginController extends GetxController {
@@ -25,6 +26,7 @@ class LoginController extends GetxController {
         print("user email ${userCredential.user.email}");
         successSnackbar("Login success");
         isLoading.value = false;
+        Get.offAll(HomeScreen());
       } on FirebaseAuthException catch (e) {
         isLoading.value = false;
         if (e.code == 'user-not-found') {

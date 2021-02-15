@@ -14,41 +14,38 @@ class SignUp extends StatelessWidget {
     return Scaffold(
       backgroundColor: Style.backgroundColor,
       body: Padding(
-        padding: const EdgeInsets.only(left: 30, right: 30),
-        child: ListView(
-          physics: BouncingScrollPhysics(),
-          children: [
-            Expanded(
-              child: Column(
-                children: [
-                  SizedBox(height: size.height * .2),
-                  Text("Sign Up", style: TextStyle(color: Style.textColor, fontWeight: FontWeight.bold, fontSize: 30)),
-                  SizedBox(height: size.height * .04),
-                  CustomTextField(controller: controller.nameController, hints: "Name"),
-                  SizedBox(height: size.height * .03),
-                  CustomTextField(controller: controller.emailController, hints: "Email"),
-                  SizedBox(height: size.height * .03),
-                  CustomTextField(controller: controller.passwordController, hints: "Password", obscure: true),
-                  SizedBox(height: size.height * .03),
-                  CustomTextField(controller: controller.confirmPasswordController, hints: "Confirm Password", obscure: true),
-                  SizedBox(height: size.height * .03),
-                  Obx(
-                    () => LoadingButton(
-                      isLoading: controller.isLoading.value,
-                      defaultStyle: true,
-                      onPressed: () {
-                        controller.doSignUp();
-                      },
-                      backgroundColor: Style.buttonColor,
-                      text: "Sign Up",
-                    ),
+        padding: EdgeInsets.only(left: 30, right: 30),
+        child: Center(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Text("Sign Up", style: TextStyle(color: Style.textColor, fontWeight: FontWeight.bold, fontSize: 30)),
+                SizedBox(height: size.height * .04),
+                CustomTextField(controller: controller.nameController, hints: "Name"),
+                SizedBox(height: size.height * .03),
+                CustomTextField(controller: controller.emailController, hints: "Email"),
+                SizedBox(height: size.height * .03),
+                CustomTextField(controller: controller.passwordController, hints: "Password", obscure: true),
+                SizedBox(height: size.height * .03),
+                CustomTextField(
+                    controller: controller.confirmPasswordController, hints: "Confirm Password", obscure: true),
+                SizedBox(height: size.height * .03),
+                Obx(
+                  () => LoadingButton(
+                    isLoading: controller.isLoading.value,
+                    defaultStyle: true,
+                    onPressed: () {
+                      controller.doSignUp();
+                    },
+                    backgroundColor: Style.buttonColor,
+                    text: "Login",
                   ),
-                  SizedBox(height: size.height * .03),
-                  Center(child: Text("Already have account?", style: TextStyle(color: Style.textColor, fontSize: 16))),
-                ],
-              ),
+                ),
+                SizedBox(height: size.height * .03),
+                Center(child: Text("Already have account?", style: TextStyle(color: Style.textColor, fontSize: 16))),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
