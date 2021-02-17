@@ -14,7 +14,7 @@ class CustomTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     final node = FocusScope.of(context);
     return Container(
-      height: 61,
+      height: MediaQuery.of(context).size.height* .06,
       child: Row(
         children: [
           Expanded(
@@ -32,7 +32,7 @@ class CustomTextField extends StatelessWidget {
                 decoration: InputDecoration(
                   hintText: "$hints",
                   border: InputBorder.none,
-                  hintStyle: TextStyle(fontSize: 22, color: Style.hintsColor, fontWeight: FontWeight.bold),
+                  hintStyle: TextStyle(fontSize: 18, color: Style.hintsColor, fontWeight: FontWeight.normal, ),
                 ),
                 textInputAction: TextInputAction.next,
                 onEditingComplete: () => node.nextFocus(),

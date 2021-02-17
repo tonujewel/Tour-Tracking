@@ -78,7 +78,7 @@ class _LoadingButtonState extends State<LoadingButton> {
           child: widget.isLoading
               ? loadingWidget
               : Container(
-                  height: 25,
+                 height: MediaQuery.of(context).size.height* .03,
                   width: mainWidth - 20 - (padding * 2),
                   alignment: Alignment.center,
                   child: Text(

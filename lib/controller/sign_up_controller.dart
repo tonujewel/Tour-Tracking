@@ -7,6 +7,7 @@ import 'package:tourtracking/utils/appConstant.dart';
 import 'package:tourtracking/view/bottom_navigation/home_screen.dart';
 
 import '../main.dart';
+import '../view/main_screen/main_screen.dart';
 
 class SignUpController extends GetxController {
   TextEditingController nameController = TextEditingController();
@@ -69,6 +70,6 @@ class SignUpController extends GetxController {
     prefs.setString("uid", firebaseUser.uid);
 
     isLoading.value = false;
-    Get.offAll(HomeScreen());
+    Get.offAll(MainScreen());
   }
 }
