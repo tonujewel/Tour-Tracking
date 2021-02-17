@@ -4,13 +4,11 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tourtracking/language/language_service.dart';
-import 'package:tourtracking/view/splash/splash_screen.dart';
 
-
+import 'view/main_screen/main_screen.dart';
 
 SharedPreferences prefs;
 double mainHeight, mainWidth, paddingTop, paddingBottom;
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,7 +26,7 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
         textTheme: GoogleFonts.nunitoTextTheme(Theme.of(context).textTheme),
       ),
-      home: SplashScreen(),
+      home: MainScreen(),
       debugShowCheckedModeBanner: false,
       // Localization
       locale: LocalizationService.locale,
