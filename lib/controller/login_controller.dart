@@ -5,6 +5,8 @@ import 'package:tourtracking/utils/appConstant.dart';
 import 'package:tourtracking/view/auth/sign_up.dart';
 import 'package:tourtracking/view/main_screen/main_screen.dart';
 
+import '../main.dart';
+
 
 class LoginController extends GetxController {
   TextEditingController emailController = TextEditingController();
@@ -31,6 +33,7 @@ class LoginController extends GetxController {
             .signInWithEmailAndPassword(email: emailController.text.trim(), password: passwordController.text.trim());
 
         print("user email ${userCredential.user.email}");
+        prefs.setString("uid", userCredential.user.uid);
         successSnackbar("Login success");
         isLoading.value = false;
         Get.offAll(MainScreen());
