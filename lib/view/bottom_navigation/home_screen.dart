@@ -45,12 +45,6 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Get.to(AddTrip());
-          },
-          child: Icon(Icons.add),
-        ),
         body: GoogleMap(
           mapType: MapType.normal,
           initialCameraPosition: CameraPosition(target: LatLng(23.7985053, 90.3842538), zoom: 13),
