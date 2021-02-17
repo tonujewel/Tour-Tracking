@@ -5,6 +5,8 @@ import 'package:tourtracking/model/onboarding_info.dart';
 import 'package:get/get.dart';
 import 'package:tourtracking/view/main_screen/main_screen.dart';
 
+import '../view/auth/login.dart';
+
 class OnboardingController extends GetxController {
 
   var selectedPageIndex = 0.obs;
@@ -13,7 +15,7 @@ class OnboardingController extends GetxController {
 
   forwardAction() {
     if (isLastPage) {
-      Get.offAll(MainScreen());
+      Get.offAll(LoginScreen());
     } else {
       pageController.nextPage(duration: 300.milliseconds, curve: Curves.ease);
     }

@@ -6,6 +6,7 @@ import 'package:tourtracking/model/user_model.dart';
 import 'package:tourtracking/utils/appConstant.dart';
 import 'package:tourtracking/view/bottom_navigation/home_screen.dart';
 
+import '../main.dart';
 
 class SignUpController extends GetxController {
   TextEditingController nameController = TextEditingController();
@@ -16,14 +17,12 @@ class SignUpController extends GetxController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   FirebaseFirestore _db = FirebaseFirestore.instance;
 
-
   var isLoading = false.obs;
 
   void doSignUp() async {
-
-    if(nameController.text.isEmpty){
+    if (nameController.text.isEmpty) {
       errorSnackbar("Name field is required");
-    }else if (emailController.text.isEmpty) {
+    } else if (emailController.text.isEmpty) {
       errorSnackbar("Email field is required");
     } else if (passwordController.text.isEmpty) {
       errorSnackbar("Password field is required");
@@ -37,21 +36,16 @@ class SignUpController extends GetxController {
     }
   }
 
-
-
   // User registration using email and password
-  Future<bool> registerWithEmailAndPassword(
-      String name, String email, String password) async {
+  Future<bool> registerWithEmailAndPassword(String name, String email, String password) async {
     try {
-      await _auth
-          .createUserWithEmailAndPassword(email: email, password: password)
-          .then((result) async {
+      await _auth.createUserWithEmailAndPassword(email: email, password: password).then((result) async {
         print('uID: ' + result.user.uid);
         print('email: ' + result.user.email);
         UserModel _newUser = UserModel(
-            uid: result.user.uid,
-            email: result.user.email,
-            name: name,
+          uid: result.user.uid,
+          email: result.user.email,
+          name: name,
           //  photoUrl: gravatarUrl
         );
         //update the user in firestore
@@ -66,14 +60,13 @@ class SignUpController extends GetxController {
     }
   }
 
-
   //updates the firestore users collection
   void _updateUserFirestore(UserModel user, User firebaseUser) {
     isLoading.value = false;
     successSnackbar("Sign up success");
-    _db
-        .doc('/users/${firebaseUser.uid}')
-        .set(user.toJson());
+    _db.doc('/users/${firebaseUser.uid}').set(user.toJson());
+
+    prefs.setString("uid", firebaseUser.uid);
 
     isLoading.value = false;
     Get.offAll(HomeScreen());

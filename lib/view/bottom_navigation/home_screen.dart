@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'dart:async';
 import 'package:tourtracking/utils/appConstant.dart';
+import 'package:tourtracking/view/trip/add_trip.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -45,14 +47,13 @@ class _HomeScreenState extends State<HomeScreen> {
       home: Scaffold(
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            successSnackbar("clicked");
+            Get.to(AddTrip());
           },
           child: Icon(Icons.add),
         ),
         body: GoogleMap(
           mapType: MapType.normal,
-          initialCameraPosition:
-              CameraPosition(target: LatLng(23.7985053, 90.3842538), zoom: 13),
+          initialCameraPosition: CameraPosition(target: LatLng(23.7985053, 90.3842538), zoom: 13),
           onMapCreated: _onMapCreated,
           markers: Set.from(markers),
         ),
