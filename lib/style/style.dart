@@ -10,9 +10,6 @@ class Style {
   static final Color demoColor = Color(0xFF7080ab);
 
 
-
-
-
   static BoxShadow boxShadow = BoxShadow(
     color: Colors.grey.withOpacity(0.5),
     spreadRadius: 5,
