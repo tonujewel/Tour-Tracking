@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tourtracking/view/trip/add_location.dart';
 import 'package:tourtracking/view/trip/add_trip.dart';
 
 import '../../main.dart';
@@ -11,7 +12,7 @@ class HistoryScreen extends StatelessWidget {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Get.to(AddTrip());
+          Get.to(AddLocation());
         },
         child: Icon(Icons.add),
       ),

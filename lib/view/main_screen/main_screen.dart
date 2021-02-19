@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:tourtracking/view/bottom_navigation/history_screen.dart';
 import 'package:tourtracking/view/bottom_navigation/home_screen.dart';
 import 'package:tourtracking/view/bottom_navigation/plan_screen.dart';
-import 'package:tourtracking/view/bottom_navigation/profile_screen.dart';
+import 'package:tourtracking/view/bottom_navigation/setings_screen.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -16,7 +16,7 @@ class _MainScreenState extends State<MainScreen> {
     HomeScreen(),
     HistoryScreen(),
     PlanScreen(),
-    ProfileScreen(),
+    SettingsScreen(),
   ];
 
   @override
