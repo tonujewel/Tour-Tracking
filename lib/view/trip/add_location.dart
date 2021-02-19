@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:tourtracking/controller/search_controller.dart';
 import 'package:tourtracking/main.dart';
 import 'package:tourtracking/widget/customTextField.dart';
+import 'add_trip.dart';
 
 class AddLocation extends StatefulWidget {
   @override
@@ -15,7 +16,6 @@ class _AddLocationState extends State<AddLocation> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-
     return Scaffold(
       appBar: AppBar(
         title: Text('Add Location'),
@@ -57,6 +57,14 @@ class _AddLocationState extends State<AddLocation> {
                             itemCount: searchController.searchResultDm.value.results.length,
                             itemBuilder: (BuildContext context, int index) {
                               return ListTile(
+                                onTap: (){
+                                  Get.off(AddTrip(
+                                      name: "${searchController.searchResultDm.value.results[index].locations[index].adminArea5},"
+                                      "${searchController.searchResultDm.value.results[index].locations[index].adminArea3},"
+                                      "${searchController.searchResultDm.value.results[index].locations[index].adminArea1}",
+                                      lat: "${searchController.searchResultDm.value.results[index].locations[index].latLng.lat}",
+                                      long: "${searchController.searchResultDm.value.results[index].locations[index].latLng.lng}",));
+                                },
                                 title: Text(
                                     "${searchController.searchResultDm.value.results[index].locations[index].adminArea5},"
                                         "${searchController.searchResultDm.value.results[index].locations[index].adminArea3},"

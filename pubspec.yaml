@@ -42,11 +42,12 @@ dependencies:
   firebase_core: ^0.7.0
   # google map
   google_maps_flutter: ^1.2.0
-
   # bottom navigation
   curved_navigation_bar: ^0.3.7
   # http package
   http: ^0.12.2
+  # image picker
+  image_picker: ^0.6.7+22
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

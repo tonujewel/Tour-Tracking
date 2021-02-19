@@ -28,7 +28,7 @@ class CustomTextField extends StatelessWidget {
                 controller: controller,
                 obscureText: obscure == null ? false : obscure,
                 keyboardType: inputType == null ? TextInputType.text : inputType,
-                style: TextStyle(fontSize: 22,letterSpacing: 2, color: Style.textColor, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 18,letterSpacing: 2, color: Style.textColor, fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                   hintText: "$hints",
                   border: InputBorder.none,
