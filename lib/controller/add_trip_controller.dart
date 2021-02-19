@@ -36,7 +36,6 @@ class AddTripController extends GetxController {
     isLoading.value = true;
     // Call the user's CollectionReference to add a new user
     return addTrip.add({
-
       'title': title.text, // John Doe
       'desctription': desc.text, // Stokes and Sons
       'location' : location.text,

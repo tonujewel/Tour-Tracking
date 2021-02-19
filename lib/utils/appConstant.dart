@@ -6,6 +6,7 @@ class AppConstant {
     {"title": "one", "id": "1", "lat": 23.7985053, "lon": 90.3842538},
     {"title": "two", "id": "2", "lat": 23.802236, "lon": 90.3700},
     {"title": "three", "id": "3", "lat": 23.8061939, "lon": 90.3771193},
+    {"title": "four", "id": "3", "lat": 24.005, "lon": 89.25},
   ];
 
  static String url = "http://open.mapquestapi.com/geocoding/v1/address?key=JLwWeakEHLi8sVUFZNcfxoREq2Tq34dP&location=";

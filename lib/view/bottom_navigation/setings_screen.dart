@@ -2,16 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tourtracking/style/style.dart';
 
 class SettingsScreen extends StatelessWidget {
-  TextEditingController controller;
-  String hints;
-  TextInputType inputType;
-  bool obscure = false;
 
-  SettingsScreen(
-      {@required this.controller,
-      @required this.hints,
-      this.inputType,
-      this.obscure});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +16,6 @@ class SettingsScreen extends StatelessWidget {
         child: ListView(
           physics: BouncingScrollPhysics(),
           children: [
-
             settingItemContainer(icon: Icon(Icons.person_outline), text: "Profile"),
             settingItemContainer(icon: Icon(Icons.account_balance_outlined), text: "Account"),
             settingItemContainer(icon: Icon(Icons.notifications_outlined), text: "Notification"),

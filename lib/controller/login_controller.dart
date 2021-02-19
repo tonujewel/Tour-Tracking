@@ -31,7 +31,6 @@ class LoginController extends GetxController {
       try {
         UserCredential userCredential = await FirebaseAuth.instance
             .signInWithEmailAndPassword(email: emailController.text.trim(), password: passwordController.text.trim());
-
         print("user email ${userCredential.user.email}");
         prefs.setString("uid", userCredential.user.uid);
         successSnackbar("Login success");
@@ -39,6 +38,7 @@ class LoginController extends GetxController {
         Get.offAll(MainScreen());
       } on FirebaseAuthException catch (e) {
         isLoading.value = false;
+        errorSnackbar("$e");
         print("$e");
         if (e.code == 'user-not-found') {
           errorSnackbar('No user found for that email.');
