@@ -8,6 +8,8 @@ class AppConstant {
     {"title": "three", "id": "3", "lat": 23.8061939, "lon": 90.3771193},
   ];
 
+ static String url = "http://open.mapquestapi.com/geocoding/v1/address?key=JLwWeakEHLi8sVUFZNcfxoREq2Tq34dP&location=";
+
   static String uid = "";
 }
 

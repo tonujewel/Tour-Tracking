@@ -32,37 +32,11 @@ class AddTrip extends StatelessWidget {
                   Container(
                     height: MediaQuery.of(context).size.height* .06,
                     width: MediaQuery.of(context).size.width* .4,
-                    padding: EdgeInsets.only(left: 20),
-                    decoration: BoxDecoration(
-                      color: Color(0xFFE3E8F0),
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    child: TextField(
-                      style: TextStyle(fontSize: 22,letterSpacing: 2, color: Style.textColor, fontWeight: FontWeight.bold),
-                      decoration: InputDecoration(
-                        hintText: "Latitude",
-                        border: InputBorder.none,
-                        hintStyle: TextStyle(fontSize: 18, color: Style.hintsColor, fontWeight: FontWeight.normal, ),
-                      ),
-                      textInputAction: TextInputAction.next,
-                    ),
+                    child: CustomTextField(controller: null, hints: 'Latitude'),
                   ),
                   Container(height: MediaQuery.of(context).size.height* .06,
                     width: MediaQuery.of(context).size.width* .4,
-                    padding: EdgeInsets.only(left: 20),
-                    decoration: BoxDecoration(
-                      color: Color(0xFFE3E8F0),
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    child: TextField(
-                      style: TextStyle(fontSize: 22,letterSpacing: 2, color: Style.textColor, fontWeight: FontWeight.bold),
-                      decoration: InputDecoration(
-                        hintText: "Latitude",
-                        border: InputBorder.none,
-                        hintStyle: TextStyle(fontSize: 18, color: Style.hintsColor, fontWeight: FontWeight.normal, ),
-                      ),
-                      textInputAction: TextInputAction.next,
-                    ),
+                    child: CustomTextField(controller: null, hints: 'Longitude'),
                   ),
                 ],
               ),
