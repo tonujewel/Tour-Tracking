@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -32,15 +34,18 @@ class AddTripController extends GetxController {
 
   Future<void> sendToFireStore({@required name, @required lat, @required long}) {
     isLoading.value = true;
+    Random random = new Random();
+    int randomNumber = random.nextInt(10000);
     // Call the user's CollectionReference to add a new user
     return addTrip.add({
       'title': title.text, // John Doe
-      'desctription': desc.text, // Stokes and Sons
+      'description': desc.text, // Stokes and Sons
       'startDate': startDate.text,
       'endDate': endDate.text,
       'locationName':name,
       'lat':lat,
       'long':long,
+      'trip_id':'$randomNumber'
     }).then((value) {
       isLoading.value = false;
       Get.back();

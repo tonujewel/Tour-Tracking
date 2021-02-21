@@ -1,5 +1,6 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:tourtracking/view/bottom_navigation/expense_screen.dart';
 import 'package:tourtracking/view/bottom_navigation/history_screen.dart';
 import 'package:tourtracking/view/bottom_navigation/home_screen.dart';
 import 'package:tourtracking/view/bottom_navigation/plan_screen.dart';
@@ -11,10 +12,11 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  var _page = 0;
+  var _page = 2;
   final pages = [
-    HomeScreen(),
+    ExpenseScreen(),
     HistoryScreen(),
+    HomeScreen(),
     PlanScreen(),
     SettingsScreen(),
   ];
@@ -23,7 +25,7 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: CurvedNavigationBar(
-          index: 0,
+          index: 2,
           color: Colors.blue,
           buttonBackgroundColor: Colors.blue,
           backgroundColor: Colors.white,
@@ -35,11 +37,9 @@ class _MainScreenState extends State<MainScreen> {
             });
           },
           items: [
-            Icon(
-              Icons.home_outlined,
-              color: Colors.white,
-            ),
+            Icon(Icons.monetization_on_outlined, color: Colors.white),
             Icon(Icons.history, color: Colors.white),
+            Icon(Icons.home_outlined, color: Colors.white),
             Icon(Icons.next_plan_outlined, color: Colors.white),
             Icon(Icons.account_circle_outlined, color: Colors.white),
           ]),

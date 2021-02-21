@@ -1,21 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tourtracking/view/trip/add_location.dart';
-import 'package:tourtracking/view/trip/add_trip.dart';
+import 'package:tourtracking/main.dart';
+import 'package:tourtracking/view/expense/add_expense.dart';
 
-import '../../main.dart';
-
-class HistoryScreen extends StatelessWidget {
+class ExpenseScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Get.to(AddLocation());
-        },
-        child: Icon(Icons.add),
-      ),
       body: new StreamBuilder<QuerySnapshot>(
           stream: FirebaseFirestore.instance.collectionGroup('trip_list${prefs.getString("uid")}').snapshots(),
           builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -27,7 +19,9 @@ class HistoryScreen extends StatelessWidget {
 
   getExpenseItems(AsyncSnapshot<QuerySnapshot> snapshot) {
     return snapshot.data.docs
-        .map((doc) => new ListTile(title: new Text(doc["title"]), subtitle: new Text(doc["trip_id"].toString())))
+        .map((doc) => new ListTile(
+            onTap: () => Get.to(AddExpense(tripID: doc["trip_id"].toString(),)),
+            title: new Text(doc["trip_id"].toString())))
         .toList();
   }
 }
