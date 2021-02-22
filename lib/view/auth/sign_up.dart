@@ -38,7 +38,7 @@ class SignUp extends StatelessWidget {
                       controller.doSignUp();
                     },
                     backgroundColor: Style.buttonColor,
-                    text: "Login",
+                    text: "Sign Up",
                   ),
                 ),
                 SizedBox(height: size.height * .03),
