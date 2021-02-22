@@ -38,7 +38,7 @@ class _MainScreenState extends State<MainScreen> {
           },
           items: [
             Icon(Icons.monetization_on_outlined, color: Colors.white),
-            Icon(Icons.history, color: Colors.white),
+            Icon(Icons.flight, color: Colors.white),
             Icon(Icons.home_outlined, color: Colors.white),
             Icon(Icons.next_plan_outlined, color: Colors.white),
             Icon(Icons.account_circle_outlined, color: Colors.white),

@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tourtracking/controller/add_trip_controller.dart';
+import 'package:tourtracking/controller/plan_controller.dart';
+import 'package:tourtracking/style/style.dart';
 import 'package:tourtracking/widget/customText.dart';
+import 'package:tourtracking/widget/customTextField.dart';
+import 'package:tourtracking/widget/loadin_button.dart';
 
-import '../../style/style.dart';
-import '../../widget/customTextField.dart';
-import '../../widget/loadin_button.dart';
+class AddPlanScreen extends StatelessWidget {
 
-class AddTrip extends StatelessWidget {
-  var controller = Get.put(AddTripController());
 
-  String name, lat, long;
-
-  AddTrip({@required this.name, @required this.lat, @required this.long});
+  AddPlanController controller = Get.put(AddPlanController());
 
   @override
   Widget build(BuildContext context) {
@@ -28,28 +26,27 @@ class AddTrip extends StatelessWidget {
           child: Column(
             children: [
               SizedBox(height: size.height * .04),
-              CustomText(text: "$name"),
+
+              CustomTextField(controller: controller.title, hints: "Title"),
               SizedBox(height: size.height * .02),
-              CustomTextField(controller: controller.title, hints: "Trip title"),
+              CustomTextField(controller: controller.desc, hints: "Description"),
               SizedBox(height: size.height * .02),
-              CustomTextField(controller: controller.desc, hints: "Trip summary"),
-              SizedBox(height: size.height * .02),
-              CustomTextField(controller: null, hints: "Upload Image"),
+              CustomTextField(controller: controller.location, hints: "Location"),
               SizedBox(height: size.height * .02),
               CustomTextField(controller: controller.startDate, hints: "Start date"),
               SizedBox(height: size.height * .02),
               CustomTextField(controller: controller.endDate, hints: "End date"),
               SizedBox(height: size.height * .04),
               Obx(() => LoadingButton(
-                  isLoading: controller.isLoading.value,
-                  defaultStyle: true,
-                  onPressed: () {
-                    controller.saveData(name: name, lat: lat, long: long);
-                    Get.reset();
-                  },
-                  backgroundColor: Style.buttonColor,
-                  text: "Save",
-                ),
+                isLoading: controller.isLoading.value,
+                defaultStyle: true,
+                onPressed: () {
+                  controller.saveData();
+                  Get.reset();
+                },
+                backgroundColor: Style.buttonColor,
+                text: "Save",
+              ),
               ),
             ],
           ),

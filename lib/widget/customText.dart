@@ -10,7 +10,6 @@ class CustomText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final node = FocusScope.of(context);
     return Container(
       height: MediaQuery.of(context).size.height * .06,
       child: Row(

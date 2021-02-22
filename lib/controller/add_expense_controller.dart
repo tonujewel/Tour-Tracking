@@ -31,7 +31,8 @@ class AddExpenseController extends GetxController{
         'item_price': itemPriceController.text,
       }).then((value) {
         isLoading.value = false;
-        successSnackbar("Expense added");
+        itemPriceController.clear();
+        itemNameController.clear();
       }).catchError((error) {
         isLoading.value = false;
         errorSnackbar("$error");

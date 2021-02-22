@@ -8,6 +8,7 @@ import 'package:tourtracking/widget/loadin_button.dart';
 
 class AddExpense extends StatefulWidget {
   String tripID;
+
   AddExpense({@required this.tripID});
 
   @override
@@ -26,15 +27,14 @@ class _AddExpenseState extends State<AddExpense> {
   }
 
   void queryValues() {
-    FirebaseFirestore.instance.collectionGroup('expense${widget.tripID}}').snapshots()
-        .listen((snapshot) {
-      double tempTotal = snapshot.docs.fold(0, (tot, doc) => tot + double.parse(doc['item_price']) );
-      setState(() {totalAmount = tempTotal;});
+    FirebaseFirestore.instance.collectionGroup('expense${widget.tripID}}').snapshots().listen((snapshot) {
+      double tempTotal = snapshot.docs.fold(0, (tot, doc) => tot + double.parse(doc['item_price']));
+      setState(() {
+        totalAmount = tempTotal;
+      });
       debugPrint(totalAmount.toString());
     });
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -75,23 +75,23 @@ class _AddExpenseState extends State<AddExpense> {
           ),
           Expanded(
             child: StreamBuilder<QuerySnapshot>(
-                stream: FirebaseFirestore.instance.collectionGroup('expense${widget.tripID}}').snapshots(),
-                builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-                  if (!snapshot.hasData) return new Text("There is no expense");
-                 // return  ListView(children: getExpenseItems(snapshot));
-                  return new ListView.builder(
-                      scrollDirection: Axis.vertical,
-                      itemCount: snapshot.data.docs.length,
-                      itemBuilder: (context, index) {
-
-                        print("${snapshot.data.docs[index]["item_price"]}");
-                        return ListTile(
-                        title: Text("${snapshot.data.docs[index]['item_name']}"),
-                        );
-                        }
-
-                  );
-                }),
+              stream: FirebaseFirestore.instance.collectionGroup('expense${widget.tripID}}').snapshots(),
+              builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                if (!snapshot.hasData) return new Text("There is no expense");
+                // return  ListView(children: getExpenseItems(snapshot));
+                return new ListView.builder(
+                  scrollDirection: Axis.vertical,
+                  itemCount: snapshot.data.docs.length,
+                  itemBuilder: (context, index) {
+                    print("${snapshot.data.docs[index]["item_price"]}");
+                    return ListTile(
+                      title: Text("${snapshot.data.docs[index]['item_name']}"),
+                      trailing: Text("${snapshot.data.docs[index]['item_price']}"),
+                    );
+                  },
+                );
+              },
+            ),
           )
         ],
       ),
@@ -100,14 +100,12 @@ class _AddExpenseState extends State<AddExpense> {
 
   getExpenseItems(AsyncSnapshot<QuerySnapshot> snapshot) {
     return snapshot.data.docs.map((doc) {
-            ListTile(
-              title:  Text(doc["item_name"]),
-              subtitle:  Text(
-                doc["item_price"].toString(),
-              ),
-            );
-          }
-        )
-        .toList();
+      ListTile(
+        title: Text(doc["item_name"]),
+        subtitle: Text(
+          doc["item_price"].toString(),
+        ),
+      );
+    }).toList();
   }
 }
