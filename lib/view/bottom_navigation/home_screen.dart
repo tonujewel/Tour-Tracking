@@ -1,11 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:tourtracking/main.dart';
 import 'dart:async';
 import 'package:tourtracking/utils/appConstant.dart';
-import 'package:tourtracking/view/trip/add_trip.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -13,58 +11,62 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final FirebaseFirestore _database = FirebaseFirestore.instance;
   Completer<GoogleMapController> _controller = Completer();
-
-  Iterable markers = [];
-
-  Iterable _markers = Iterable.generate(AppConstant.list.length, (index) {
-    return Marker(
-        markerId: MarkerId(AppConstant.list[index]['id']),
-        position: LatLng(
-          AppConstant.list[index]['lat'],
-          AppConstant.list[index]['lon'],
-        ),
-        infoWindow: InfoWindow(title: AppConstant.list[index]["title"]));
-  });
-
-  GoogleMapController mapController;
-
-  void _onMapCreated(GoogleMapController controller) {
-    mapController = controller;
-    // mapController.setMapStyle('[{"featureType": "all","stylers": [{ "color": "#C0C0C0" }]},{"featureType": "road.arterial","elementType": "geometry","stylers": [{ "color": "#CCFFFF" }]},{"featureType": "landscape","elementType": "labels","stylers": [{ "visibility": "off" }]}]');
-  }
-
-
-  void queryValues() {
-    FirebaseFirestore.instance.collectionGroup('trip_list${prefs.getString("uid")}').snapshots().listen((snapshot) {
-      double tempTotal = snapshot.docs.fold(0, (tot, doc) => tot + double.parse(doc['item_price']));
-
-     // AsyncSnapshot<QuerySnapshot> snapshot = snapshot.docs.map((e) => );
-      setState(() {
-     //   totalAmount = tempTotal;
-      });
-    });
-  }
+  Map<MarkerId, Marker> markers = <MarkerId, Marker>{};
 
   @override
   void initState() {
-    setState(() {
-      print("called");
-      markers = _markers;
-    });
+    markerData();
     super.initState();
   }
 
+  markerData() {
+    _database.collectionGroup('trip_list${prefs.getString("uid")}').snapshots().listen((snapshot) {
+      if (snapshot.docs.isNotEmpty) {
+        for (int i = 0; i < snapshot.docs.length; i++) {
+          //   initMarker(snapshot.docs[i].data, snapshot.docs[i]["title"]);
+          print("map data lat: ${snapshot.docs[i]["lat"]} lon:${snapshot.docs[i]["long"]} ");
+          initMarker(
+              lat: double.parse("${snapshot.docs[i]["lat"]}"),
+              lng: double.parse("${snapshot.docs[i]["long"]}"),
+              title: "${snapshot.docs[i]["title"]}",
+              id: "${snapshot.docs[i]["title"]}");
+        }
+      }
+    });
+  }
+
+  void initMarker({@required double lat, @required double lng, @required String id, @required String title}) {
+    var markerIdVal = id;
+    final MarkerId markerId = MarkerId(markerIdVal);
+
+    // creating a new MARKER
+    final Marker marker = Marker(
+      markerId: markerId,
+      position: LatLng(lat, lng),
+      infoWindow: InfoWindow(title: title, snippet: "tipo"),
+    );
+
+    setState(() {
+      // adding a new marker to map
+      markers[markerId] = marker;
+    });
+  }
+
+  static final CameraPosition _kGooglePlex = CameraPosition(target: LatLng(24.4804796, 89.9678135), zoom: 7.1);
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        body: GoogleMap(
-          mapType: MapType.normal,
-          initialCameraPosition: CameraPosition(target: LatLng(24.4804796, 89.9678135), zoom: 7.1),
-          onMapCreated: _onMapCreated,
-          markers: Set.from(markers),
-        ),
+    return new Scaffold(
+      body: GoogleMap(
+        mapType: MapType.normal,
+        initialCameraPosition: _kGooglePlex,
+        onMapCreated: (GoogleMapController controller) {
+          _controller.complete(controller);
+        },
+        myLocationEnabled: true,
+        markers: Set<Marker>.of(markers.values),
       ),
     );
   }

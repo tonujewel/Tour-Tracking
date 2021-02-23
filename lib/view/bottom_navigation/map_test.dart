@@ -18,40 +18,33 @@ class MapSampleState extends State<MapSample> {
 
   @override
   void initState(){
-    crearmarcadores();
+    markerData();
     super.initState();
   }
 
-  crearmarcadores(){
+  markerData(){
     _database.collectionGroup('trip_list${prefs.getString("uid")}').snapshots().listen((snapshot) {
 
       if(snapshot.docs.isNotEmpty){
         for(int i = 0; i<snapshot.docs.length; i++){
        //   initMarker(snapshot.docs[i].data, snapshot.docs[i]["title"]);
           print("map data lat: ${snapshot.docs[i]["lat"]} lon:${snapshot.docs[i]["long"]} ");
+          initMarker(lat:double.parse("${snapshot.docs[i]["lat"]}"), lng: double.parse("${snapshot.docs[i]["long"]}"),title: "${snapshot.docs[i]["title"]}",id: "${snapshot.docs[i]["title"]}" );
         }
 
       }
     });
   }
 
-  //     .then((docs) {
-  // if(docs.docs.){
-  // for(int i= 0; i < docs.documents.length; i++) {
-  // initMarker(docs.documents[i].data, docs.documents[i].documentID);
-  // }
-  // }
-  // });
-  //
-  void initMarker(lugar, lugaresid) {
-    var markerIdVal = lugaresid;
+  void initMarker({@required double lat,@required  double lng,@required  String id,@required  String title}) {
+    var markerIdVal = id;
     final MarkerId markerId = MarkerId(markerIdVal);
 
     // creating a new MARKER
     final Marker marker = Marker(
       markerId: markerId,
-      position: LatLng(lugar['Latitud'], lugar['Longitud']),
-      infoWindow: InfoWindow(title: lugar['Lugar'], snippet: lugar['tipo']),
+      position: LatLng(lat, lng),
+      infoWindow: InfoWindow(title: title, snippet: "tipo"),
     );
 
     setState(() {
@@ -60,16 +53,13 @@ class MapSampleState extends State<MapSample> {
     });
   }
 
-  static final CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
-    zoom: 14.4746,
-  );
+  static final CameraPosition _kGooglePlex = CameraPosition(target: LatLng(24.4804796, 89.9678135), zoom: 7.1);
 
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
       body: GoogleMap(
-        mapType: MapType.hybrid,
+        mapType: MapType.normal,
         initialCameraPosition: _kGooglePlex,
         onMapCreated: (GoogleMapController controller) {
           _controller.complete(controller);
@@ -77,33 +67,10 @@ class MapSampleState extends State<MapSample> {
         myLocationEnabled: true,
         markers: Set<Marker>.of(markers.values),
       ),
-      // floatingActionButton: FloatingActionButton.extended(
-      //   onPressed: _currentLocation,
-      //   label: Text('Ir a mi Ubicacion!'),
-      //   icon: Icon(Icons.location_on),
-      // ),
     );
   }
 
 
 
-  // void _currentLocation() async {
-  //   final GoogleMapController controller = await _controller.future;
-  //   LocationData currentLocation;
-  //   var location = new Location();
-  //   try {
-  //     currentLocation = await location.getLocation();
-  //   } on Exception {
-  //     currentLocation = null;
-  //   }
-  //
-  //   controller.animateCamera(CameraUpdate.newCameraPosition(
-  //     CameraPosition(
-  //       bearing: 0,
-  //       target: LatLng(currentLocation.latitude, currentLocation.longitude),
-  //       zoom: 17.0,
-  //     ),
-  //   ));
-  // }
 
 }
