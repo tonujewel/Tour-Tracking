@@ -56,7 +56,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                             "${doc["title"]}",
                             style: TextStyle(fontSize: 18, letterSpacing: 2, color: Style.textColor),
                           ),
-
+                     
                         ],
                       ),
                     ),
