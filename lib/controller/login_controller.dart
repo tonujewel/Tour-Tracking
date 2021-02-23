@@ -36,7 +36,7 @@ class LoginController extends GetxController {
         prefs.setString("uid", userCredential.user.uid);
         successSnackbar("Login success");
         isLoading.value = false;
-        Get.offAll(MapSample());
+        Get.offAll(MainScreen());
       } on FirebaseAuthException catch (e) {
         isLoading.value = false;
         errorSnackbar("$e");

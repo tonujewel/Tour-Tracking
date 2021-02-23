@@ -61,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
       home: Scaffold(
         body: GoogleMap(
           mapType: MapType.normal,
-          initialCameraPosition: CameraPosition(target: LatLng(23.7985053, 90.3842538), zoom: 13),
+          initialCameraPosition: CameraPosition(target: LatLng(24.4804796, 89.9678135), zoom: 7.1),
           onMapCreated: _onMapCreated,
           markers: Set.from(markers),
         ),
