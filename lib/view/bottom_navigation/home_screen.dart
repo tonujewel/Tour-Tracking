@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:tourtracking/main.dart';
 import 'dart:async';
 import 'package:tourtracking/utils/appConstant.dart';
 import 'package:tourtracking/view/trip/add_trip.dart';
@@ -30,6 +32,18 @@ class _HomeScreenState extends State<HomeScreen> {
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
     // mapController.setMapStyle('[{"featureType": "all","stylers": [{ "color": "#C0C0C0" }]},{"featureType": "road.arterial","elementType": "geometry","stylers": [{ "color": "#CCFFFF" }]},{"featureType": "landscape","elementType": "labels","stylers": [{ "visibility": "off" }]}]');
+  }
+
+
+  void queryValues() {
+    FirebaseFirestore.instance.collectionGroup('trip_list${prefs.getString("uid")}').snapshots().listen((snapshot) {
+      double tempTotal = snapshot.docs.fold(0, (tot, doc) => tot + double.parse(doc['item_price']));
+
+     // AsyncSnapshot<QuerySnapshot> snapshot = snapshot.docs.map((e) => );
+      setState(() {
+     //   totalAmount = tempTotal;
+      });
+    });
   }
 
   @override

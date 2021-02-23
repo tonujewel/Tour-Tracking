@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tourtracking/utils/appConstant.dart';
 import 'package:tourtracking/view/auth/sign_up.dart';
+import 'package:tourtracking/view/bottom_navigation/map_test.dart';
 import 'package:tourtracking/view/main_screen/main_screen.dart';
 
 import '../main.dart';
@@ -35,7 +36,7 @@ class LoginController extends GetxController {
         prefs.setString("uid", userCredential.user.uid);
         successSnackbar("Login success");
         isLoading.value = false;
-        Get.offAll(MainScreen());
+        Get.offAll(MapSample());
       } on FirebaseAuthException catch (e) {
         isLoading.value = false;
         errorSnackbar("$e");
