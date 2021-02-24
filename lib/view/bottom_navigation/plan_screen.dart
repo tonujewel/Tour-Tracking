@@ -3,12 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tourtracking/main.dart';
 import 'package:tourtracking/view/plan/add_plan_screen.dart';
+import 'package:tourtracking/widget/custom_appbar.dart';
 
 class PlanScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Upcoming Tour"),),
+      appBar: PreferredSize(
+        preferredSize: Size(double.infinity, kToolbarHeight),
+        child: CustomAppbar("Up comming tour"),
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Get.to(AddPlanScreen());

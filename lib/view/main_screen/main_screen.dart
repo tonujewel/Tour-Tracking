@@ -1,5 +1,6 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:tourtracking/style/style.dart';
 import 'package:tourtracking/view/bottom_navigation/expense_screen.dart';
 import 'package:tourtracking/view/bottom_navigation/history_screen.dart';
 import 'package:tourtracking/view/bottom_navigation/home_screen.dart';
@@ -26,9 +27,9 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       bottomNavigationBar: CurvedNavigationBar(
           index: 2,
-          color: Colors.blue,
-          buttonBackgroundColor: Colors.blue,
-          backgroundColor: Colors.white,
+          color: Style.primaryColor,
+          buttonBackgroundColor: Style.primaryColor,
+          backgroundColor: Colors.transparent,
           animationCurve: Curves.easeInOut,
           animationDuration: Duration(milliseconds: 600),
           onTap: (index) {

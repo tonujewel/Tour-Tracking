@@ -4,6 +4,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:tourtracking/main.dart';
 import 'dart:async';
 import 'package:tourtracking/utils/appConstant.dart';
+import 'package:tourtracking/widget/custom_appbar.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -54,11 +55,15 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  static final CameraPosition _kGooglePlex = CameraPosition(target: LatLng(24.4804796, 89.9678135), zoom: 7.1);
+  static final CameraPosition _kGooglePlex = CameraPosition(target: LatLng(23.990459, 90.210615), zoom: 6.8);
 
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
+      appBar: PreferredSize(
+        preferredSize: Size(double.infinity, kToolbarHeight),
+        child: CustomAppbar("Tour Map"),
+      ),
       body: GoogleMap(
         mapType: MapType.normal,
         initialCameraPosition: _kGooglePlex,
