@@ -29,7 +29,7 @@ class _MainScreenState extends State<MainScreen> {
           index: 2,
           color: Style.primaryColor,
           buttonBackgroundColor: Style.primaryColor,
-          backgroundColor: Colors.transparent,
+          backgroundColor: Style.backgroundColor,
           animationCurve: Curves.easeInOut,
           animationDuration: Duration(milliseconds: 600),
           onTap: (index) {
