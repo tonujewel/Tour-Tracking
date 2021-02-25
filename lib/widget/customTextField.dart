@@ -6,40 +6,39 @@ class CustomTextField extends StatelessWidget {
   TextEditingController controller;
   String hints;
   TextInputType inputType;
+  int maxDigit;
   bool obscure = false;
 
-  CustomTextField({@required this.controller, @required this.hints, this.inputType, this.obscure});
+  CustomTextField(
+      {@required this.controller,
+        @required this.hints,
+        this.inputType,
+        this.maxDigit,
+        this.obscure});
 
   @override
   Widget build(BuildContext context) {
-    final node = FocusScope.of(context);
-    return Container(
-      height: MediaQuery.of(context).size.height* .06,
-      child: Row(
-        children: [
-          Expanded(
-            child: Container(
-              padding: EdgeInsets.only(left: 20),
-              decoration: BoxDecoration(
-                color: Color(0xFFE3E8F0),
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-              child: TextField(
-                controller: controller,
-                obscureText: obscure == null ? false : obscure,
-                keyboardType: inputType == null ? TextInputType.text : inputType,
-                style: TextStyle(fontSize: 18,letterSpacing: 2, color: Style.textColor, fontWeight: FontWeight.bold),
-                decoration: InputDecoration(
-                  hintText: "$hints",
-                  border: InputBorder.none,
-                  hintStyle: TextStyle(fontSize: 18, color: Style.hintsColor, fontWeight: FontWeight.normal, ),
-                ),
-                textInputAction: TextInputAction.next,
-                onEditingComplete: () => node.nextFocus(),
-              ),
-            ),
-          ),
-        ],
+    return TextField(
+      textInputAction: TextInputAction.next,
+      maxLength: maxDigit==null?1000:maxDigit,
+      keyboardType: inputType==null?TextInputType.text:inputType,
+      controller: controller,
+      obscureText: obscure==null?false:obscure,
+      decoration: InputDecoration(
+        contentPadding: EdgeInsets.only(left: 15),
+        hintText: hints,
+        hintStyle: TextStyle(color: Style.secondaryTextColor),
+        filled: true,
+        counterText: "",
+        fillColor: Colors.white70,
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(12.0)),
+          borderSide: BorderSide(color: Style.primaryColor, width: 1),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+          borderSide: BorderSide(color: Style.primaryColor),
+        ),
       ),
     );
   }

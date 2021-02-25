@@ -4,13 +4,20 @@ import 'package:get/get.dart';
 import 'package:tourtracking/main.dart';
 import 'package:tourtracking/style/style.dart';
 import 'package:tourtracking/view/expense/add_expense.dart';
+import 'package:tourtracking/widget/custom_appbar.dart';
 
-class ExpenseScreen extends StatelessWidget {
+class ExpenseScreen extends StatefulWidget {
+  @override
+  _ExpenseScreenState createState() => _ExpenseScreenState();
+}
+
+class _ExpenseScreenState extends State<ExpenseScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Expense"),
+      appBar: PreferredSize(
+        preferredSize: Size(double.infinity, kToolbarHeight),
+        child: CustomAppbar("Expense"),
       ),
       body: new StreamBuilder<QuerySnapshot>(
           stream: FirebaseFirestore.instance.collectionGroup('trip_list${prefs.getString("uid")}').snapshots(),
@@ -59,3 +66,4 @@ class ExpenseScreen extends StatelessWidget {
   }
 }
 
+// onTap: () => Get.to(AddExpense(tripID: doc["trip_id"].toString(),)),

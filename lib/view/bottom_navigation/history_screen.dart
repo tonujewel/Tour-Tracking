@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:tourtracking/style/style.dart';
 import 'package:tourtracking/view/trip/add_location.dart';
 import 'package:tourtracking/view/trip/add_trip.dart';
+import 'package:tourtracking/widget/custom_appbar.dart';
 
 import '../../main.dart';
 
@@ -11,8 +12,9 @@ class HistoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Tour List"),
+      appBar: PreferredSize(
+        preferredSize: Size(double.infinity, kToolbarHeight),
+        child: CustomAppbar("Tour List"),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
