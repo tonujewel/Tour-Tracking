@@ -12,16 +12,10 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-
-
   SettingsController controller = Get.put(SettingsController());
 
-
   String name = "", email = "";
-
   int successTour = 0, upcomingTour = 0;
-
-  Stream list;
 
   @override
   void initState() {
@@ -81,8 +75,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
           SizedBox(height: size.height * .04, width: size.height * .02),
           profileSection(size, context),
           earningContainer(size),
-          changePassword(size,"Update password"),
-          changePassword(size,"About us"),
+          changePassword(size, "Update password"),
+          changePassword(size, "About us"),
         ],
       ),
     );
@@ -91,10 +85,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
   GestureDetector changePassword(Size size, String text) {
     return GestureDetector(
       onTap: () {
-       // Get.to(ChangePassword());
+        // Get.to(ChangePassword());
       },
       child: Container(
-        margin: EdgeInsets.only(left: 15,right: 15,top: 15),
+        margin: EdgeInsets.only(left: 15, right: 15, top: 15),
         padding: EdgeInsets.all(15),
         width: size.width,
         decoration: BoxDecoration(
@@ -211,7 +205,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
             color: Colors.white,
           ),
           onPressed: () {
-
             controller.doLogout();
           },
         ),
