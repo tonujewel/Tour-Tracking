@@ -13,8 +13,13 @@ class SettingsScreen extends StatefulWidget {
 class _SettingsScreenState extends State<SettingsScreen> {
   String name = "", email = "";
 
+  int successTour = 0, upcomingTour = 0;
+
+  Stream list;
+
   @override
   void initState() {
+    // user data
     FirebaseFirestore.instance
         .collection('users')
         .doc(prefs.getString("uid"))
@@ -33,9 +38,31 @@ class _SettingsScreenState extends State<SettingsScreen> {
       }
     });
 
+    queryValues();
+
     //  print("user data ${documentStream.length}");
 
     super.initState();
+  }
+
+  void queryValues() {
+    FirebaseFirestore.instance.collectionGroup('trip_list${prefs.getString("uid")}').snapshots().listen((snapshot) {
+      int tempTotal = snapshot.docs.length;
+
+      print("length  $tempTotal");
+      setState(() {
+        successTour = tempTotal;
+      });
+    });
+
+    FirebaseFirestore.instance.collectionGroup('plan${prefs.getString("uid")}').snapshots().listen((snapshot) {
+      int tempTotal = snapshot.docs.length;
+
+      print("length  $tempTotal");
+      setState(() {
+        upcomingTour = tempTotal;
+      });
+    });
   }
 
   @override
@@ -46,21 +73,22 @@ class _SettingsScreenState extends State<SettingsScreen> {
         physics: BouncingScrollPhysics(),
         children: [
           SizedBox(height: size.height * .04, width: size.height * .02),
-          prifileSection(size, context),
+          profileSection(size, context),
           earningContainer(size),
-          changePassword(size),
+          changePassword(size,"Update password"),
+          changePassword(size,"About us"),
         ],
       ),
     );
   }
 
-  GestureDetector changePassword(Size size) {
+  GestureDetector changePassword(Size size, String text) {
     return GestureDetector(
       onTap: () {
         // Get.to(UpdatePassword());
       },
       child: Container(
-        margin: EdgeInsets.all(15),
+        margin: EdgeInsets.only(left: 15,right: 15,top: 15),
         padding: EdgeInsets.all(15),
         width: size.width,
         decoration: BoxDecoration(
@@ -73,7 +101,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             Row(
               children: [
                 Text(
-                  "Update password",
+                  "$text",
                   style: TextStyle(color: Style.primaryTextColor, fontSize: 16),
                 ),
               ],
@@ -107,7 +135,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   ),
                   SizedBox(height: 5),
                   Text(
-                    "11",
+                    "${successTour + upcomingTour}",
                     style: TextStyle(color: Style.primaryTextColor, fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                 ],
@@ -125,11 +153,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
             children: [
               tripColumn(
                 "Upcoming tour",
-                "1",
+                "$upcomingTour",
               ),
               tripColumn(
                 "Success tour",
-                "10",
+                "$successTour",
               ),
             ],
           )
@@ -138,7 +166,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
-  Row prifileSection(Size size, BuildContext context) {
+  Row profileSection(Size size, BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
