@@ -11,19 +11,21 @@ class CustomText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * .06,
+      height: MediaQuery.of(context).size.height * .1,
       child: Row(
         children: [
           Expanded(
             child: Container(
-              padding: EdgeInsets.only(left: 20,top: 12,bottom: 12),
+              padding: EdgeInsets.only(left: 20,top: 15,bottom: 15),
               decoration: BoxDecoration(
-                color: Color(0xFFE3E8F0),
+                color: Colors.white70,
                 borderRadius: BorderRadius.circular(10.0),
+                  border: Border.all(color: Style.primaryColor)
+
               ),
               child: Text(
                 "$text",
-                style: TextStyle(fontSize: 18, letterSpacing: 2, color: Style.textColor, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 14, letterSpacing: 2, color: Style.secondaryTextColor),
               ),
             ),
           ),

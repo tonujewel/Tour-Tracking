@@ -9,23 +9,17 @@ class AppConstant {
     {"title": "four", "id": "3", "lat": 24.005, "lon": 89.25},
   ];
 
- static String url = "http://open.mapquestapi.com/geocoding/v1/address?key=JLwWeakEHLi8sVUFZNcfxoREq2Tq34dP&location=";
+  static String url = "http://open.mapquestapi.com/geocoding/v1/address?key=JLwWeakEHLi8sVUFZNcfxoREq2Tq34dP&location=";
 
   static String uid = "";
 }
 
-void errorSnackbar(
-  String msg,
-) {
+void errorSnackbar(String msg) {
   return Get.snackbar('Error', "$msg",
-      snackPosition: SnackPosition.TOP,
-      backgroundColor: Colors.red[400],
-      colorText: Colors.white);
+      snackPosition: SnackPosition.TOP, backgroundColor: Colors.red[400], colorText: Colors.white);
 }
 
 void successSnackbar(String msg) {
   return Get.snackbar('Success', "$msg",
-      snackPosition: SnackPosition.TOP,
-      backgroundColor: Colors.green[400],
-      colorText: Colors.white);
+      snackPosition: SnackPosition.TOP, backgroundColor: Colors.green[400], colorText: Colors.white);
 }

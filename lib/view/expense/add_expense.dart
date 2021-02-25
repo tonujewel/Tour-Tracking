@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:tourtracking/controller/add_expense_controller.dart';
 import 'package:tourtracking/style/style.dart';
 import 'package:tourtracking/widget/customTextField.dart';
+import 'package:tourtracking/widget/custom_appbar.dart';
 import 'package:tourtracking/widget/loadin_button.dart';
 
 class AddExpense extends StatefulWidget {
@@ -40,8 +41,9 @@ class _AddExpenseState extends State<AddExpense> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Expense details"),
+      appBar: PreferredSize(
+        preferredSize: Size(double.infinity, kToolbarHeight),
+        child: CustomAppbar(title:"Expense"),
       ),
       body: Column(
         children: [

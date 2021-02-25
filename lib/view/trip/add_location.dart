@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:tourtracking/controller/search_controller.dart';
 import 'package:tourtracking/main.dart';
 import 'package:tourtracking/widget/customTextField.dart';
+import 'package:tourtracking/widget/custom_appbar.dart';
 import 'add_trip.dart';
 
 class AddLocation extends StatefulWidget {
@@ -17,8 +18,9 @@ class _AddLocationState extends State<AddLocation> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Add Location'),
+      appBar: PreferredSize(
+        preferredSize: Size(double.infinity, kToolbarHeight),
+        child: CustomAppbar(title:"Expense"),
       ),
       body: Column(
         children: [

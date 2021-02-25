@@ -14,7 +14,7 @@ class HistoryScreen extends StatelessWidget {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size(double.infinity, kToolbarHeight),
-        child: CustomAppbar("Tour List"),
+        child: CustomAppbar(title:"Tour List"),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {

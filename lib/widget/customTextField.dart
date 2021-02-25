@@ -19,11 +19,13 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      cursorColor: Style.cursorColor,
       textInputAction: TextInputAction.next,
       maxLength: maxDigit==null?1000:maxDigit,
       keyboardType: inputType==null?TextInputType.text:inputType,
       controller: controller,
       obscureText: obscure==null?false:obscure,
+      style: TextStyle(color: Style.secondaryTextColor),
       decoration: InputDecoration(
         contentPadding: EdgeInsets.only(left: 15),
         hintText: hints,

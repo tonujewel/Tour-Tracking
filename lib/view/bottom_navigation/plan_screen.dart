@@ -11,7 +11,7 @@ class PlanScreen extends StatelessWidget {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size(double.infinity, kToolbarHeight),
-        child: CustomAppbar("Up comming tour"),
+        child: CustomAppbar(title:"Up comming tour"),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {

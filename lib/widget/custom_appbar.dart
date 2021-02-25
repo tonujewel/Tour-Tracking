@@ -5,13 +5,13 @@ import 'package:tourtracking/style/style.dart';
 class CustomAppbar extends StatelessWidget {
   String title;
 
-  CustomAppbar(this.title);
+  CustomAppbar({this.title});
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: Style.appbarBackground,
-      elevation: 1,
+      elevation: 0,
       title: Center(
         child: Text(
           '$title',

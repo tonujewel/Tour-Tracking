@@ -17,7 +17,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size(double.infinity, kToolbarHeight),
-        child: CustomAppbar("Expense"),
+        child: CustomAppbar(title:"Expense"),
       ),
       body: new StreamBuilder<QuerySnapshot>(
           stream: FirebaseFirestore.instance.collectionGroup('trip_list${prefs.getString("uid")}').snapshots(),

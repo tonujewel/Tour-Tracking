@@ -5,6 +5,7 @@ import 'package:tourtracking/controller/plan_controller.dart';
 import 'package:tourtracking/style/style.dart';
 import 'package:tourtracking/widget/customText.dart';
 import 'package:tourtracking/widget/customTextField.dart';
+import 'package:tourtracking/widget/custom_appbar.dart';
 import 'package:tourtracking/widget/loadin_button.dart';
 
 class AddPlanScreen extends StatelessWidget {
@@ -17,8 +18,9 @@ class AddPlanScreen extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Style.backgroundColor,
-      appBar: AppBar(
-        title: Text("Add Trip", style: TextStyle(color: Style.textColor, fontWeight: FontWeight.bold, fontSize: 15)),
+      appBar: PreferredSize(
+        preferredSize: Size(double.infinity, kToolbarHeight),
+        child: CustomAppbar(title:"Expense"),
       ),
       body: Padding(
         padding: const EdgeInsets.only(left: 30, right: 30),

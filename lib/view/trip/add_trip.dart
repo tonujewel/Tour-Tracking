@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tourtracking/controller/add_trip_controller.dart';
 import 'package:tourtracking/widget/customText.dart';
+import 'package:tourtracking/widget/custom_appbar.dart';
 
 import '../../style/style.dart';
 import '../../widget/customTextField.dart';
@@ -19,8 +20,9 @@ class AddTrip extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Style.backgroundColor,
-      appBar: AppBar(
-        title: Text("Add Trip", style: TextStyle(color: Style.textColor, fontWeight: FontWeight.bold, fontSize: 15)),
+      appBar: PreferredSize(
+        preferredSize: Size(double.infinity, kToolbarHeight),
+        child: CustomAppbar(title:"Expense"),
       ),
       body: Padding(
         padding: const EdgeInsets.only(left: 30, right: 30),

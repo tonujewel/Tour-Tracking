@@ -10,6 +10,7 @@ class Style {
   static final Color secondaryTextColor = Color(0xff778ca3);
   static final Color appbarBackground = Color(0xfffa8231);
   static final Color buttonColor = Color(0xfffa8231);
+  static final Color cursorColor = Color(0xfffa8231);
 
 
 

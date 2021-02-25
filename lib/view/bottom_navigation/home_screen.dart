@@ -62,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return new Scaffold(
       appBar: PreferredSize(
         preferredSize: Size(double.infinity, kToolbarHeight),
-        child: CustomAppbar("Tour Map"),
+        child: CustomAppbar(title:"Tour Map"),
       ),
       body: GoogleMap(
         mapType: MapType.normal,
