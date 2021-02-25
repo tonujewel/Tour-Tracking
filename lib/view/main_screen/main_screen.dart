@@ -2,7 +2,7 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:tourtracking/style/style.dart';
 import 'package:tourtracking/view/bottom_navigation/expense_screen.dart';
-import 'package:tourtracking/view/bottom_navigation/history_screen.dart';
+import 'package:tourtracking/view/bottom_navigation/tour_list.dart';
 import 'package:tourtracking/view/bottom_navigation/home_screen.dart';
 import 'package:tourtracking/view/bottom_navigation/plan_screen.dart';
 import 'package:tourtracking/view/bottom_navigation/setings_screen.dart';
@@ -16,7 +16,7 @@ class _MainScreenState extends State<MainScreen> {
   var _page = 2;
   final pages = [
     ExpenseScreen(),
-    HistoryScreen(),
+    TourListScreen(),
     HomeScreen(),
     PlanScreen(),
     SettingsScreen(),

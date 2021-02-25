@@ -22,7 +22,7 @@ class AddTrip extends StatelessWidget {
       backgroundColor: Style.backgroundColor,
       appBar: PreferredSize(
         preferredSize: Size(double.infinity, kToolbarHeight),
-        child: CustomAppbar(title:"Expense"),
+        child: CustomAppbar(title:"Add Tour"),
       ),
       body: Padding(
         padding: const EdgeInsets.only(left: 30, right: 30),

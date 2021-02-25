@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tourtracking/main.dart';
+import 'package:tourtracking/view/on_boarding/onboarding_page.dart';
 import '../view/auth/login.dart';
 
 class SplashController extends GetxController {
@@ -10,7 +11,7 @@ class SplashController extends GetxController {
     SharedPreferences.getInstance().then((pr) {
       prefs = pr;
     });
-    Timer(Duration(seconds: 3), () => Get.off(LoginScreen()));
+    Timer(Duration(seconds: 3), () => Get.off(OnboardingPage()));
     super.onInit();
   }
 }

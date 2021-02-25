@@ -11,6 +11,7 @@ class Style {
   static final Color appbarBackground = Color(0xfffa8231);
   static final Color buttonColor = Color(0xfffa8231);
   static final Color cursorColor = Color(0xfffa8231);
+  static final Color floatingBgColor = Color(0xfffa8231);
 
 
 

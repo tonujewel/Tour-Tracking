@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tourtracking/controller/settings_controller.dart';
 import 'package:tourtracking/main.dart';
 import 'package:tourtracking/style/style.dart';
 import 'package:tourtracking/widget/custom_background.dart';
@@ -11,6 +12,11 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
+
+
+  SettingsController controller = Get.put(SettingsController());
+
+
   String name = "", email = "";
 
   int successTour = 0, upcomingTour = 0;
@@ -85,7 +91,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   GestureDetector changePassword(Size size, String text) {
     return GestureDetector(
       onTap: () {
-        // Get.to(UpdatePassword());
+       // Get.to(ChangePassword());
       },
       child: Container(
         margin: EdgeInsets.only(left: 15,right: 15,top: 15),
@@ -205,10 +211,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
             color: Colors.white,
           ),
           onPressed: () {
-            //  profileController.logoutAction(context);
 
-            // prefs.setBool(AppConstant.isLogin, false);
-            // Get.offAll(LoginScreen());
+            controller.doLogout();
           },
         ),
       ],

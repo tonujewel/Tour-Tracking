@@ -15,6 +15,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Style.backgroundColor,
       appBar: PreferredSize(
         preferredSize: Size(double.infinity, kToolbarHeight),
         child: CustomAppbar(title:"Expense"),
@@ -40,18 +41,19 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                       tripID: doc["trip_id"].toString(),
                     )),
                     child: Container(
-                      padding: EdgeInsets.only(left: 15, top: 6, bottom: 6),
-                      margin: EdgeInsets.only(left: 15, top: 10, right: 15),
+                      margin: EdgeInsets.only(left: 15,right: 15,top: 15),
+                      padding: EdgeInsets.all(15),
                       decoration: BoxDecoration(
-                        color: Color(0xFFE3E8F0),
-                        borderRadius: BorderRadius.circular(10.0),
+                        color: Colors.white,
+                        boxShadow: [Style.boxShadow],
+                        borderRadius: BorderRadius.circular(10),
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             "${doc["title"]}",
-                            style: TextStyle(fontSize: 18, letterSpacing: 2, color: Style.textColor),
+                            style: TextStyle(color: Style.primaryTextColor, fontSize: 16),
                           ),
                         ],
                       ),

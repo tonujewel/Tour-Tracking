@@ -22,11 +22,11 @@ class OnboardingController extends GetxController {
   }
 
   List<OnboardingInfo> onboardingPages = [
-    OnboardingInfo('assets/image/order.png', 'Order Your Food',
+    OnboardingInfo('assets/image/one.png', 'Order Your Food',
         'Now you can order food any time  right from your mobile.'),
-    OnboardingInfo('assets/image/cook.png', 'Cooking Safe Food',
+    OnboardingInfo('assets/image/two.png', 'Cooking Safe Food',
         'We are maintain safty and We keep clean while making food.'),
-    OnboardingInfo('assets/image/deliver.png', 'Quick Delivery',
+    OnboardingInfo('assets/image/three.png', 'Quick Delivery',
         'Orders your favorite meals will be  immediately deliver')
   ];
 }

@@ -5,8 +5,7 @@ import 'package:tourtracking/style/style.dart';
 class CustomText extends StatelessWidget {
   String text;
 
-
-  CustomText({ @required this.text});
+  CustomText({@required this.text});
 
   @override
   Widget build(BuildContext context) {
@@ -16,16 +15,14 @@ class CustomText extends StatelessWidget {
         children: [
           Expanded(
             child: Container(
-              padding: EdgeInsets.only(left: 20,top: 15,bottom: 15),
+              padding: EdgeInsets.only(left: 20, top: 15, bottom: 15),
               decoration: BoxDecoration(
-                color: Colors.white70,
-                borderRadius: BorderRadius.circular(10.0),
-                  border: Border.all(color: Style.primaryColor)
-
-              ),
+                  color: Colors.white70,
+                  borderRadius: BorderRadius.circular(10.0),
+                  border: Border.all(color: Style.primaryColor)),
               child: Text(
                 "$text",
-                style: TextStyle(fontSize: 14, letterSpacing: 2, color: Style.secondaryTextColor),
+                style: TextStyle(fontSize: 15, color: Style.secondaryTextColor),
               ),
             ),
           ),

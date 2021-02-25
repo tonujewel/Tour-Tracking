@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tourtracking/controller/search_controller.dart';
 import 'package:tourtracking/main.dart';
+import 'package:tourtracking/widget/app_with_back.dart';
 import 'package:tourtracking/widget/customTextField.dart';
 import 'package:tourtracking/widget/custom_appbar.dart';
 import 'add_trip.dart';
@@ -20,7 +21,7 @@ class _AddLocationState extends State<AddLocation> {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size(double.infinity, kToolbarHeight),
-        child: CustomAppbar(title:"Expense"),
+        child: CustomAppbarBack(title:"Add Location"),
       ),
       body: Column(
         children: [
@@ -38,7 +39,7 @@ class _AddLocationState extends State<AddLocation> {
                 },
                 child: Container(
                     width: size.width * .12,
-                    height: size.height * .06,
+                    height: size.height * .062,
                     //padding: EdgeInsets.only(left: 20),
                     decoration: BoxDecoration(
                       color: Color(0xFFE3E8F0),

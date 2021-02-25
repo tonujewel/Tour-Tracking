@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:tourtracking/controller/onboarding_controller.dart';
+import 'package:tourtracking/style/style.dart';
 
 class OnboardingPage extends StatelessWidget {
   final _controller = OnboardingController();
@@ -8,6 +9,7 @@ class OnboardingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Stack(
           children: [
@@ -24,7 +26,7 @@ class OnboardingPage extends StatelessWidget {
                         SizedBox(height: 32),
                         Text(
                           _controller.onboardingPages[index].title,
-                          style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+                          style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500,color: Style.primaryColor),
                         ),
                         SizedBox(height: 32),
                         Padding(
@@ -51,7 +53,7 @@ class OnboardingPage extends StatelessWidget {
                       width: 12,
                       height: 12,
                       decoration: BoxDecoration(
-                        color: _controller.selectedPageIndex.value == index ? Colors.red : Colors.grey,
+                        color: _controller.selectedPageIndex.value == index ? Style.primaryColor : Colors.grey,
                         shape: BoxShape.circle,
                       ),
                     );
@@ -63,6 +65,7 @@ class OnboardingPage extends StatelessWidget {
               right: 20,
               bottom: 20,
               child: FloatingActionButton(
+                backgroundColor: Style.floatingBgColor,
                 elevation: 0,
                 onPressed: _controller.forwardAction,
                 child: Obx(() {

@@ -8,17 +8,18 @@ import 'package:tourtracking/view/main_screen/main_screen.dart';
 
 import '../main.dart';
 
-
 class LoginController extends GetxController {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-
+  TextEditingController passwordControllerReset = TextEditingController();
+  TextEditingController confirmPasswordReset = TextEditingController();
+  UserCredential userCredential;
   var isLoading = false.obs;
 
   @override
   void onInit() {
-    emailController.text="tonujewel@gmail.com";
-    passwordController.text="123456";
+    emailController.text = "tonujewel@gmail.com";
+    passwordController.text = "123456";
     super.onInit();
   }
 
@@ -30,20 +31,14 @@ class LoginController extends GetxController {
     } else {
       isLoading.value = true;
       try {
-        UserCredential userCredential = await FirebaseAuth.instance
+        userCredential = await FirebaseAuth.instance
             .signInWithEmailAndPassword(email: emailController.text.trim(), password: passwordController.text.trim());
         print("user email ${userCredential.user.email}");
-
         prefs.setString("uid", userCredential.user.uid);
         prefs.setString("email", userCredential.user.email);
         prefs.setString("name", userCredential.user.displayName);
 
-
-
         //String savedEmail = prefs.getString('email');
-
-
-
 
         successSnackbar("Login success");
         isLoading.value = false;

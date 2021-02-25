@@ -43,38 +43,48 @@ class _AddExpenseState extends State<AddExpense> {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size(double.infinity, kToolbarHeight),
-        child: CustomAppbar(title:"Expense"),
+        child: CustomAppbar(title: "Expense"),
       ),
       body: Column(
         children: [
-          Text("Total spend : $totalAmount"),
-          Row(
-            children: [
-              Container(
-                width: size.width * .4,
-                child: CustomTextField(controller: addExpenseController.itemNameController, hints: "Item name"),
-              ),
-              Container(
-                width: size.width * .2,
-                child: CustomTextField(
-                  controller: addExpenseController.itemPriceController,
-                  hints: "price",
-                  inputType: TextInputType.number,
-                ),
-              ),
-              Container(
-                  width: size.width * .2,
-                  child: LoadingButton(
-                    isLoading: false,
-                    defaultStyle: true,
-                    onPressed: () {
-                      addExpenseController.addExpenseData(widget.tripID);
-                    },
-                    backgroundColor: Style.buttonColor,
-                    text: "Add",
-                  )),
-            ],
+          Padding(
+            padding: const EdgeInsets.only(top:15,bottom: 15),
+            child: Text("Total Expense : $totalAmount",style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold,color: Style.primaryTextColor),),
           ),
+          Padding(
+            padding: const EdgeInsets.only(left:8.0,right: 8),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  width: size.width * .45,
+                  child: CustomTextField(controller: addExpenseController.itemNameController, hints: "Item Name"),
+                ),
+                Container(
+                  width: size.width * .28,
+                  child: CustomTextField(
+                    controller: addExpenseController.itemPriceController,
+                    hints: "Price",
+                    inputType: TextInputType.number,
+                  ),
+                ),
+                Container(
+                    width: size.width * .2,
+                    height: size.height * .067,
+                    child: LoadingButton(
+                      isLoading: false,
+                      defaultStyle: true,
+                      onPressed: () {
+                        addExpenseController.addExpenseData(widget.tripID);
+                      },
+                      backgroundColor: Style.buttonColor,
+                      text: "Add",
+                    )),
+              ],
+            ),
+          ),
+          SizedBox(height: size.height * 0.03,),
+          Divider(thickness: 1 ),
           Expanded(
             child: StreamBuilder<QuerySnapshot>(
               stream: FirebaseFirestore.instance.collectionGroup('expense${widget.tripID}}').snapshots(),
