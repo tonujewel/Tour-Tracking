@@ -3,17 +3,21 @@ import 'package:get/get.dart';
 import 'package:tourtracking/controller/add_trip_controller.dart';
 import 'package:tourtracking/widget/customText.dart';
 import 'package:tourtracking/widget/custom_appbar.dart';
-
 import '../../style/style.dart';
 import '../../widget/customTextField.dart';
 import '../../widget/loadin_button.dart';
 
-class AddTrip extends StatelessWidget {
-  var controller = Get.put(AddTripController());
-
+class AddTrip extends StatefulWidget {
   String name, lat, long;
 
   AddTrip({@required this.name, @required this.lat, @required this.long});
+
+  @override
+  _AddTripState createState() => _AddTripState();
+}
+
+class _AddTripState extends State<AddTrip> {
+  var controller = Get.put(AddTripController());
 
   @override
   Widget build(BuildContext context) {
@@ -22,31 +26,100 @@ class AddTrip extends StatelessWidget {
       backgroundColor: Style.backgroundColor,
       appBar: PreferredSize(
         preferredSize: Size(double.infinity, kToolbarHeight),
-        child: CustomAppbar(title:"Add Tour"),
+        child: CustomAppbar(title: "Add Tour"),
       ),
       body: Padding(
         padding: const EdgeInsets.only(left: 30, right: 30),
         child: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
           child: Column(
+
             children: [
               SizedBox(height: size.height * .04),
-              CustomText(text: "$name"),
+              CustomText(text: "${widget.name}"),
               SizedBox(height: size.height * .02),
               CustomTextField(controller: controller.title, hints: "Trip title"),
               SizedBox(height: size.height * .02),
               CustomTextField(controller: controller.desc, hints: "Trip summary"),
               SizedBox(height: size.height * .02),
-              CustomTextField(controller: null, hints: "Upload Image"),
+              Container(
+                padding: EdgeInsets.only(left: 20, top: 15, bottom: 15),
+                height: size.height * .2,
+                decoration: BoxDecoration(
+                  color: Colors.white70,
+                  borderRadius: BorderRadius.circular(10.0),
+                  border: Border.all(color: Style.primaryColor),
+                ),
+                child: Obx(() => Center(child: Image.network(controller.imageUrl.value))),
+              ),
+              CustomText(
+                  text: "Upload image",
+                  ontab: () {
+                    controller.uploadImage();
+                  }),
               SizedBox(height: size.height * .02),
-              CustomTextField(controller: controller.startDate, hints: "Start date"),
+              GestureDetector(
+                onTap: () {
+                  controller.selectStartDate(context);
+                },
+                child: Container(
+                  padding: EdgeInsets.only(left: 20, top: 15, bottom: 15, right: 20),
+                  decoration: BoxDecoration(
+                      color: Colors.white70,
+                      borderRadius: BorderRadius.circular(10.0),
+                      border: Border.all(color: Style.primaryColor)),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Start Date",
+                        style: TextStyle(fontSize: 15, color: Style.secondaryTextColor),
+                      ),
+                      Obx(
+                        () => Text(
+                          controller.selectedStartDate.toString(),
+                          style: TextStyle(fontSize: 15, color: Style.secondaryTextColor),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
               SizedBox(height: size.height * .02),
-              CustomTextField(controller: controller.endDate, hints: "End date"),
-              SizedBox(height: size.height * .04),
-              Obx(() => LoadingButton(
+              GestureDetector(
+                onTap: () {
+                  controller.selectEndDate(context);
+                },
+                child: Container(
+                  padding: EdgeInsets.only(left: 20, top: 15, bottom: 15, right: 20),
+                  decoration: BoxDecoration(
+                      color: Colors.white70,
+                      borderRadius: BorderRadius.circular(10.0),
+                      border: Border.all(color: Style.primaryColor)),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "End Date",
+                        style: TextStyle(fontSize: 15, color: Style.secondaryTextColor),
+                      ),
+                      Obx(
+                        () => Text(
+                          controller.selectedEndDate.value.toString(),
+                          style: TextStyle(fontSize: 15, color: Style.secondaryTextColor),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(height: size.height * .02),
+              Obx(
+                () => LoadingButton(
                   isLoading: controller.isLoading.value,
                   defaultStyle: true,
                   onPressed: () {
-                    controller.saveData(name: name, lat: lat, long: long);
+                    controller.saveData(name: widget.name, lat: widget.lat, long: widget.long);
                     Get.reset();
                   },
                   backgroundColor: Style.buttonColor,
