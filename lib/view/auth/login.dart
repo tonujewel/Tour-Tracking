@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:tourtracking/controller/login_controller.dart';
 import 'package:tourtracking/style/style.dart';
 import 'package:tourtracking/view/auth/sign_up.dart';
+import 'package:tourtracking/widget/customLoader.dart';
 import 'package:tourtracking/widget/customTextField.dart';
 import 'package:tourtracking/widget/loadin_button.dart';
-
 
 class LoginScreen extends StatelessWidget {
   var loginController = Get.put(LoginController());
@@ -13,15 +14,19 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Scaffold(
-      backgroundColor: Style.primaryColor,
-      body: ListView(
-        children: [
-          topContainer(size),
-          bottomContainer(size, context),
-        ],
-      ),
-    );
+    return Obx(() => ModalProgressHUD(
+          inAsyncCall: loginController.isLoading.value,
+          progressIndicator: CustomLoader(),
+          child: Scaffold(
+            backgroundColor: Style.primaryColor,
+            body: ListView(
+              children: [
+                topContainer(size),
+                bottomContainer(size, context),
+              ],
+            ),
+          ),
+        ));
   }
 
   Container bottomContainer(Size size, BuildContext context) {
@@ -47,21 +52,19 @@ class LoginScreen extends StatelessWidget {
             obscure: true,
           ),
           SizedBox(height: size.height * 0.09),
-          Obx(
-                () => LoadingButton(
-              isLoading: loginController.isLoading.value,
-              defaultStyle: true,
-              onPressed: () {
-                loginController.doLogin();
-              },
-              backgroundColor: Style.primaryColor,
-              text: "Login",
-            ),
+          LoadingButton(
+            isLoading: false,
+            defaultStyle: true,
+            onPressed: () {
+              loginController.doLogin();
+            },
+            backgroundColor: Style.primaryColor,
+            text: "Login",
           ),
           SizedBox(height: size.height * .05),
           GestureDetector(
               onTap: () {
-              //  loginController.goToForgotScreen();
+                //  loginController.goToForgotScreen();
               },
               child: Text(
                 "Forgot password?",
@@ -71,7 +74,7 @@ class LoginScreen extends StatelessWidget {
           GestureDetector(
               onTap: () {
                 Get.to(SignUp());
-                },
+              },
               child: Text(
                 "Don't have account? Sign up",
                 style: TextStyle(fontSize: 16),
