@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tourtracking/language/language_service.dart';
 import 'package:tourtracking/view/splash/splash_screen.dart';
+import 'package:tourtracking/view/tour/tour_details.dart';
 
 
 
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
         textTheme: GoogleFonts.nunitoTextTheme(Theme.of(context).textTheme),
       ),
-      home: SplashScreen(),
+      home: TourDetails(),
       debugShowCheckedModeBanner: false,
       // Localization
       locale: LocalizationService.locale,

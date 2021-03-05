@@ -78,12 +78,11 @@ class TourController extends GetxController {
     //Select Image
     image = await _imagePicker.getImage(source: ImageSource.gallery);
     var file = File(image.path);
-    isLoading.value = true;
 
     if (image != null) {
       //Upload to Firebase
       isLoading.value = true;
-
+      update();
       final extension = p.extension(file.toString()); // '.dart'
 
       print("path $file");
@@ -104,8 +103,12 @@ class TourController extends GetxController {
       });
 
       isLoading.value = false;
+      update();
+
     } else {
       isLoading.value = false;
+      update();
+
 
       print('No Image Path Received');
     }

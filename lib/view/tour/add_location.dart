@@ -6,7 +6,7 @@ import 'package:tourtracking/main.dart';
 import 'package:tourtracking/widget/app_with_back.dart';
 import 'package:tourtracking/widget/customLoader.dart';
 import 'package:tourtracking/widget/customTextField.dart';
-import 'add_trip.dart';
+import 'add_tour.dart';
 
 class AddLocation extends StatefulWidget {
   @override
@@ -64,7 +64,7 @@ class _AddLocationState extends State<AddLocation> {
                           itemBuilder: (BuildContext context, int index) {
                             return ListTile(
                                 onTap: () {
-                                  Get.off(AddTrip(
+                                  Get.off(AddTour(
                                     name:
                                         "${searchController.searchResultDm.value.results[index].locations[index].adminArea5},"
                                         "${searchController.searchResultDm.value.results[index].locations[index].adminArea3},"

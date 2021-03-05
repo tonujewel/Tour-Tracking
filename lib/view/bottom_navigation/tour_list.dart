@@ -4,11 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:tourtracking/style/style.dart';
-import 'package:tourtracking/view/trip/add_location.dart';
+import 'package:tourtracking/view/tour/add_location.dart';
 import 'package:tourtracking/widget/customLoader.dart';
 import 'package:tourtracking/widget/custom_appbar.dart';
 import 'package:tourtracking/widget/empty_container.dart';
-
 import '../../main.dart';
 
 class TourListScreen extends StatefulWidget {
@@ -60,6 +59,7 @@ class _TourListScreenState extends State<TourListScreen> {
         ),
         body: num != 0
             ? ListView.builder(
+          physics: BouncingScrollPhysics(),
                 itemCount: num,
                 itemBuilder: (context, index) {
                   return Container(
@@ -67,9 +67,9 @@ class _TourListScreenState extends State<TourListScreen> {
                       children: [
                         Expanded(
                           child: GestureDetector(
-                            // onTap: () => Get.to(AddExpense(
-                            //   tripID: _controller.snapshot[index]["trip_id"].toString(),
-                            // )),
+                            onTap: (){
+                              print(" print ${snapshot[index]}");
+                            },
                             child: Container(
                               margin: EdgeInsets.only(left: 15, right: 15, top: 15),
                               padding: EdgeInsets.all(15),
@@ -81,10 +81,13 @@ class _TourListScreenState extends State<TourListScreen> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  //snapshot[index].data['Views']
                                   Text(
                                     "${snapshot[index]['title']}",
                                     style: TextStyle(color: Style.primaryTextColor, fontSize: 16),
+                                  ),
+                                  Text(
+                                    "${snapshot[index]['startDate']}",
+                                    style: TextStyle(color: Style.primaryTextColor, fontSize: 14),
                                   ),
                                 ],
                               ),
