@@ -26,7 +26,8 @@ class LoginScreen extends StatelessWidget {
               ],
             ),
           ),
-        ));
+        ),
+    );
   }
 
   Container bottomContainer(Size size, BuildContext context) {

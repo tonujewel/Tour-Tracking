@@ -30,58 +30,60 @@ class SignUp extends StatelessWidget {
       decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(topLeft: Radius.circular(25), topRight: Radius.circular(25))),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          CustomTextField(
-            controller: controller.nameController,
-            hints: "Name",
-            inputType: TextInputType.name,
-          ),
-          SizedBox(height: size.height * 0.03),
-          CustomTextField(
-            controller: controller.emailController,
-            hints: "Email",
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(height: size.height * 0.03),
 
-            inputType: TextInputType.phone,
-          ),
-          SizedBox(height: size.height * 0.03),
-          CustomTextField(
-            controller: controller.passwordController,
-            hints: "Password",
-            obscure: true,
-          ),
-          SizedBox(height: size.height * 0.03),
-          CustomTextField(
-            controller: controller.confirmPasswordController,
-            hints: "Confirm Password",
-            obscure: true,
-          ),
-          SizedBox(height: size.height * 0.09),
-          Obx(
-                () => LoadingButton(
-              isLoading: controller.isLoading.value,
-              defaultStyle: true,
-              onPressed: () {
-                controller.doSignUp();
-              },
-              backgroundColor: Style.primaryColor,
-              text: "Sign Up",
+            CustomTextField(
+              controller: controller.nameController,
+              hints: "Name",
+              inputType: TextInputType.name,
             ),
-          ),
-          SizedBox(height: size.height * .05),
-
-          GestureDetector(
-              onTap: () {
-                Get.off(LoginScreen());
-              },
-              child: Text(
-                "Already have an account? Sign In",
-                style: TextStyle(fontSize: 16),
-              )),
-          SizedBox(height: size.height * .1),
-        ],
+            SizedBox(height: size.height * 0.03),
+            CustomTextField(
+              controller: controller.emailController,
+              hints: "Email",
+              inputType: TextInputType.emailAddress,
+            ),
+            SizedBox(height: size.height * 0.03),
+            CustomTextField(
+              controller: controller.passwordController,
+              hints: "Password",
+              obscure: true,
+            ),
+            SizedBox(height: size.height * 0.03),
+            CustomTextField(
+              controller: controller.confirmPasswordController,
+              hints: "Confirm Password",
+              obscure: true,
+            ),
+            SizedBox(height: size.height * 0.03),
+            Obx(
+              () => LoadingButton(
+                isLoading: controller.isLoading.value,
+                defaultStyle: true,
+                onPressed: () {
+                  controller.doSignUp();
+                },
+                backgroundColor: Style.primaryColor,
+                text: "Sign Up",
+              ),
+            ),
+            SizedBox(height: size.height * .05),
+            GestureDetector(
+                onTap: () {
+                  Get.off(LoginScreen());
+                },
+                child: Text(
+                  "Already have an account? Sign In",
+                  style: TextStyle(fontSize: 16),
+                )),
+            SizedBox(height: size.height * .1),
+          ],
+        ),
       ),
     );
   }

@@ -3,8 +3,6 @@ import 'package:get/state_manager.dart';
 import 'package:get/utils.dart';
 import 'package:tourtracking/model/onboarding_info.dart';
 import 'package:get/get.dart';
-import 'package:tourtracking/view/main_screen/main_screen.dart';
-
 import '../view/auth/login.dart';
 
 class OnboardingController extends GetxController {
@@ -22,11 +20,11 @@ class OnboardingController extends GetxController {
   }
 
   List<OnboardingInfo> onboardingPages = [
-    OnboardingInfo('assets/image/one.png', 'Order Your Food',
-        'Now you can order food any time  right from your mobile.'),
-    OnboardingInfo('assets/image/two.png', 'Cooking Safe Food',
-        'We are maintain safty and We keep clean while making food.'),
-    OnboardingInfo('assets/image/three.png', 'Quick Delivery',
-        'Orders your favorite meals will be  immediately deliver')
+    OnboardingInfo('assets/image/one.png', 'Track your tour',
+        'Store your tour history'),
+    OnboardingInfo('assets/image/two.png', 'Tour in map',
+        'map data'),
+    OnboardingInfo('assets/image/three.png', 'Expense',
+        'Calculate your tour expense')
   ];
 }

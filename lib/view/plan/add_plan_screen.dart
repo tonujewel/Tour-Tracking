@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tourtracking/controller/add_trip_controller.dart';
+import 'package:tourtracking/controller/tour_controller.dart';
 import 'package:tourtracking/controller/plan_controller.dart';
 import 'package:tourtracking/style/style.dart';
 import 'package:tourtracking/widget/customText.dart';
@@ -20,7 +20,7 @@ class AddPlanScreen extends StatelessWidget {
       backgroundColor: Style.backgroundColor,
       appBar: PreferredSize(
         preferredSize: Size(double.infinity, kToolbarHeight),
-        child: CustomAppbar(title:"Expense"),
+        child: CustomAppbar(title:"Add upcoming tour"),
       ),
       body: Padding(
         padding: const EdgeInsets.only(left: 30, right: 30),

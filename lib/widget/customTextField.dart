@@ -9,22 +9,17 @@ class CustomTextField extends StatelessWidget {
   int maxDigit;
   bool obscure = false;
 
-  CustomTextField(
-      {@required this.controller,
-        @required this.hints,
-        this.inputType,
-        this.maxDigit,
-        this.obscure});
+  CustomTextField({@required this.controller, @required this.hints, this.inputType, this.maxDigit, this.obscure});
 
   @override
   Widget build(BuildContext context) {
     return TextField(
       cursorColor: Style.cursorColor,
       textInputAction: TextInputAction.next,
-      maxLength: maxDigit==null?1000:maxDigit,
-      keyboardType: inputType==null?TextInputType.text:inputType,
+      maxLength: maxDigit == null ? 1000 : maxDigit,
+      keyboardType: inputType == null ? TextInputType.text : inputType,
       controller: controller,
-      obscureText: obscure==null?false:obscure,
+      obscureText: obscure == null ? false : obscure,
       style: TextStyle(color: Style.secondaryTextColor),
       decoration: InputDecoration(
         contentPadding: EdgeInsets.only(left: 15),

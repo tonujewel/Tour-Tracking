@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:tourtracking/main.dart';
 import 'dart:async';
 import 'package:tourtracking/utils/appConstant.dart';
+import 'package:tourtracking/widget/customLoader.dart';
 import 'package:tourtracking/widget/custom_appbar.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -16,14 +18,18 @@ class _HomeScreenState extends State<HomeScreen> {
   Completer<GoogleMapController> _controller = Completer();
   Map<MarkerId, Marker> markers = <MarkerId, Marker>{};
 
+  bool isLoading = false;
+
   @override
   void initState() {
+    isLoading = true;
     markerData();
     super.initState();
   }
 
   markerData() {
     _database.collectionGroup('trip_list${prefs.getString("uid")}').snapshots().listen((snapshot) {
+
       if (snapshot.docs.isNotEmpty) {
         for (int i = 0; i < snapshot.docs.length; i++) {
           //   initMarker(snapshot.docs[i].data, snapshot.docs[i]["title"]);
@@ -35,6 +41,10 @@ class _HomeScreenState extends State<HomeScreen> {
               id: "${snapshot.docs[i]["title"]}");
         }
       }
+
+      setState(() {
+        isLoading = false;
+      });
     });
   }
 
@@ -50,7 +60,6 @@ class _HomeScreenState extends State<HomeScreen> {
     );
 
     setState(() {
-      // adding a new marker to map
       markers[markerId] = marker;
     });
   }
@@ -59,19 +68,23 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size(double.infinity, kToolbarHeight),
-        child: CustomAppbar(title:"Tour Map"),
-      ),
-      body: GoogleMap(
-        mapType: MapType.normal,
-        initialCameraPosition: _kGooglePlex,
-        onMapCreated: (GoogleMapController controller) {
-          _controller.complete(controller);
-        },
-        myLocationEnabled: true,
-        markers: Set<Marker>.of(markers.values),
+    return  ModalProgressHUD(
+      inAsyncCall: isLoading,
+      progressIndicator: CustomLoader(),
+      child: Scaffold(
+        appBar: PreferredSize(
+          preferredSize: Size(double.infinity, kToolbarHeight),
+          child: CustomAppbar(title:"Tour Map"),
+        ),
+        body: GoogleMap(
+          mapType: MapType.normal,
+          initialCameraPosition: _kGooglePlex,
+          onMapCreated: (GoogleMapController controller) {
+            _controller.complete(controller);
+          },
+          myLocationEnabled: true,
+          markers: Set<Marker>.of(markers.values),
+        ),
       ),
     );
   }

@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tourtracking/controller/add_expense_controller.dart';
+import 'package:tourtracking/controller/expense_controller.dart';
 import 'package:tourtracking/style/style.dart';
 import 'package:tourtracking/widget/customTextField.dart';
 import 'package:tourtracking/widget/custom_appbar.dart';
@@ -17,7 +17,7 @@ class AddExpense extends StatefulWidget {
 }
 
 class _AddExpenseState extends State<AddExpense> {
-  AddExpenseController addExpenseController = Get.put(AddExpenseController());
+  ExpenseController addExpenseController = Get.put(ExpenseController());
 
   double totalAmount;
 
