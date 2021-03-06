@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
         textTheme: GoogleFonts.nunitoTextTheme(Theme.of(context).textTheme),
       ),
-      home: TourDetails(),
+      home: SplashScreen(),
       debugShowCheckedModeBanner: false,
       // Localization
       locale: LocalizationService.locale,

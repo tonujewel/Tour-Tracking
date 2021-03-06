@@ -17,11 +17,9 @@ class SplashScreen extends StatelessWidget {
     paddingBottom = MediaQuery.of(context).padding.bottom;
 
     return Scaffold(
-      backgroundColor: Style.backgroundColor,
+      backgroundColor: Colors.white,
       body: Center(
-        child: Text(
-          "Tour Tracking", style: TextStyle(fontSize: 26,fontWeight: FontWeight.bold, color: Style.textColor),
-        ),
+        child: Image.asset('assets/image/logo.png'),
       ),
     );
   }

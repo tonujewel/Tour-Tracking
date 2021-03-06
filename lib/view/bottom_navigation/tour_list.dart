@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:tourtracking/style/style.dart';
 import 'package:tourtracking/view/tour/add_location.dart';
+import 'package:tourtracking/view/tour/tour_details.dart';
 import 'package:tourtracking/widget/customLoader.dart';
 import 'package:tourtracking/widget/custom_appbar.dart';
 import 'package:tourtracking/widget/empty_container.dart';
@@ -59,7 +60,7 @@ class _TourListScreenState extends State<TourListScreen> {
         ),
         body: num != 0
             ? ListView.builder(
-          physics: BouncingScrollPhysics(),
+                physics: BouncingScrollPhysics(),
                 itemCount: num,
                 itemBuilder: (context, index) {
                   return Container(
@@ -67,27 +68,58 @@ class _TourListScreenState extends State<TourListScreen> {
                       children: [
                         Expanded(
                           child: GestureDetector(
-                            onTap: (){
-                              print(" print ${snapshot[index]}");
+                            onTap: () {
+                              Get.to(
+                                TourDetails(
+                                  markerId: snapshot[index]['trip_id'],
+                                  imageUrl: snapshot[index]['image'],
+                                  title: snapshot[index]['title'],
+                                  desc: snapshot[index]['description'],
+                                  startTime: snapshot[index]['startDate'],
+                                  endTime: snapshot[index]['endDate'],
+                                  location: snapshot[index]['locationName'],
+                                  lat: double.parse(snapshot[index]['lat']),
+                                  lon: double.parse(snapshot[index]['long']),
+                                ),
+                              );
                             },
                             child: Container(
                               margin: EdgeInsets.only(left: 15, right: 15, top: 15),
                               padding: EdgeInsets.all(15),
+                              height: Get.height * .11,
                               decoration: BoxDecoration(
                                 color: Colors.white,
                                 boxShadow: [Style.boxShadow],
                                 borderRadius: BorderRadius.circular(10),
                               ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                              child: Row(
                                 children: [
-                                  Text(
-                                    "${snapshot[index]['title']}",
-                                    style: TextStyle(color: Style.primaryTextColor, fontSize: 16),
+                                  Hero(
+                                    tag: "${snapshot[index]['trip_id']}",
+                                    child: CircleAvatar(
+                                      radius: Get.height * .034,
+                                      backgroundColor: Style.primaryColor,
+                                      child: CircleAvatar(
+                                        radius: Get.height * .033,
+                                        backgroundImage: NetworkImage(
+                                          "${snapshot[index]['image']}",
+                                        ),
+                                      ),
+                                    ),
                                   ),
-                                  Text(
-                                    "${snapshot[index]['startDate']}",
-                                    style: TextStyle(color: Style.primaryTextColor, fontSize: 14),
+                                  SizedBox(width: Get.width * .02),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "${snapshot[index]['title']}",
+                                        style: TextStyle(color: Style.primaryTextColor, fontSize: 16),
+                                      ),
+                                      Text(
+                                        "${snapshot[index]['startDate']}",
+                                        style: TextStyle(color: Style.primaryTextColor, fontSize: 14),
+                                      ),
+                                    ],
                                   ),
                                 ],
                               ),
