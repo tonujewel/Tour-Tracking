@@ -50,7 +50,7 @@ class _AddExpenseState extends State<AddExpense> {
           Padding(
             padding: const EdgeInsets.only(top: 15, bottom: 15),
             child: Text(
-              "Total Expense : $totalAmount",
+              "Total Expense : BDT $totalAmount",
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Style.primaryTextColor),
             ),
           ),
@@ -103,7 +103,7 @@ class _AddExpenseState extends State<AddExpense> {
                     print("${snapshot.data.docs[index]["item_price"]}");
                     return ListTile(
                       title: Text("${snapshot.data.docs[index]['item_name']}"),
-                      trailing: Text("${snapshot.data.docs[index]['item_price']}"),
+                      trailing: Text("BDT ${snapshot.data.docs[index]['item_price']}"),
                     );
                   },
                 );

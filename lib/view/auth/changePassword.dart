@@ -63,7 +63,7 @@ class ChangePassword extends StatelessWidget {
             isLoading: false,
             defaultStyle: true,
             onPressed: () {
-              changePasswordController.checkUser();
+              changePasswordController.changePass();
             },
             backgroundColor: Style.primaryColor,
             text: "Change Password",

@@ -13,19 +13,14 @@ class ChangePasswordController extends GetxController {
 
   FirebaseAuth auth = FirebaseAuth.instance;
 
-  checkUser() {
-    if (auth.currentUser != null) {
-      print(auth.currentUser.email);
-      changePass();
-    } else {
-      print("user not found");
-    }
-  }
 
   void changePass() async {
     EmailAuthCredential credential =
         EmailAuthProvider.credential(email: auth.currentUser.email, password: "Password@3221");
 
-    await auth.currentUser.reauthenticateWithCredential(credential);
+    await auth.sendPasswordResetEmail(email:'tonujewel@gmail.com');
   }
+
+
+
 }

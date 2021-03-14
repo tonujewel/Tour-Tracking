@@ -86,7 +86,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   GestureDetector changePassword(Size size, String text) {
     return GestureDetector(
       onTap: () {
-         Get.to(ChangePassword());
+        // Get.to(ChangePassword());
       },
       child: Container(
         margin: EdgeInsets.only(left: 15, right: 15, top: 15),

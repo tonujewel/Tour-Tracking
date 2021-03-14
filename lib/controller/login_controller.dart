@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tourtracking/utils/appConstant.dart';
@@ -17,8 +18,11 @@ class LoginController extends GetxController {
 
   @override
   void onInit() {
-    emailController.text = "tonujewel@gmail.com";
-    passwordController.text = "123456";
+    if (kDebugMode) {
+      emailController.text = "tonujewel@gmail.com";
+      passwordController.text = "123456";
+    }
+
     super.onInit();
   }
 
