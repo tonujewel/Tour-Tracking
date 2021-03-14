@@ -42,7 +42,6 @@ class _PlanScreenState extends State<PlanScreen> {
   @override
   Widget build(BuildContext context) {
     int num = snapshot?.length ?? 0;
-
     return ModalProgressHUD(
       inAsyncCall: loading,
       progressIndicator: CustomLoader(),
@@ -61,107 +60,111 @@ class _PlanScreenState extends State<PlanScreen> {
         ),
         body: num != 0
             ? ListView.builder(
-          itemCount: num,
-          itemBuilder: (context, index) {
-            return Container(
-              child: Row(
-                children: [
-                  Expanded(
-                    child: GestureDetector(
-                      // onTap: () => Get.to(AddExpense(
-                      //   tripID: _controller.snapshot[index]["trip_id"].toString(),
-                      // )),
-                      child: Container(
-                        margin: EdgeInsets.only(left: 15,right: 15,top: 15),
-                        padding: EdgeInsets.all(15),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          boxShadow: [Style.boxShadow],
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Column(
-                          children: [
-                            Row(
-                              children: [
-                                Text(
-                                  snapshot[index]["title"],
-                                  style: TextStyle(color: Style.primaryTextColor, fontSize: 16, fontWeight: FontWeight.bold),
-                                ),
-                              ],
+                itemCount: num,
+                itemBuilder: (context, index) {
+                  return Container(
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: GestureDetector(
+                            //  delete command
+                            child: Container(
+                              margin: EdgeInsets.only(left: 15, right: 15, top: 15),
+                              padding: EdgeInsets.all(15),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                boxShadow: [Style.boxShadow],
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Column(
+                                children: [
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        snapshot[index]["title"],
+                                        style: TextStyle(
+                                            color: Style.primaryTextColor, fontSize: 16, fontWeight: FontWeight.bold),
+                                      ),
+                                      GestureDetector(
+                                          onTap: () async {
+                                            await collectionReference.doc(snapshot[index].id).delete();
+                                          },
+                                          child: Icon(Icons.delete_rounded))
+                                    ],
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        snapshot[index]["locationName"],
+                                        style: TextStyle(color: Style.primaryTextColor, fontSize: 14),
+                                      ),
+                                      Text(
+                                        snapshot[index]["startDate"],
+                                        style: TextStyle(color: Style.primaryTextColor, fontSize: 14),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  snapshot[index] ["locationName"],
-                                  style: TextStyle(color: Style.primaryTextColor, fontSize: 14),
-                                ),
-
-                                Text(
-                                  snapshot[index]["startDate"],
-                                  style: TextStyle(color: Style.primaryTextColor, fontSize: 14),
-                                ),
-                              ],
-                            ),
-                          ],
+                          ),
                         ),
-                      ),
+                      ],
                     ),
-                  ),
-                ],
-              ),
-            );
-          },
-        )
+                  );
+                },
+              )
             : EmptyContainer(),
       ),
     );
   }
 
-  //Text(
-  //                               "${snapshot[index]['title']}",
-  //                               style: TextStyle(color: Style.primaryTextColor, fontSize: 16),
-  //                             ),
+//Text(
+//                               "${snapshot[index]['title']}",
+//                               style: TextStyle(color: Style.primaryTextColor, fontSize: 16),
+//                             ),
 
-  // getExpenseItemss(AsyncSnapshot<QuerySnapshot> snapshot) {
-  //   return snapshot.data.docs
-  //       .map(
-  //         (doc) => Container(
-  //           margin: EdgeInsets.only(left: 15,right: 15,top: 15),
-  //           padding: EdgeInsets.all(15),
-  //           decoration: BoxDecoration(
-  //             color: Colors.white,
-  //             boxShadow: [Style.boxShadow],
-  //             borderRadius: BorderRadius.circular(10),
-  //           ),
-  //           child: Column(
-  //             children: [
-  //               Row(
-  //                 children: [
-  //                   Text(
-  //                     doc["title"],
-  //                     style: TextStyle(color: Style.primaryTextColor, fontSize: 16, fontWeight: FontWeight.bold),
-  //                   ),
-  //                 ],
-  //               ),
-  //               Row(
-  //                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //                 children: [
-  //                   Text(
-  //                     doc["locationName"],
-  //                     style: TextStyle(color: Style.primaryTextColor, fontSize: 14),
-  //                   ),
-  //
-  //                   Text(
-  //                     doc["startDate"],
-  //                     style: TextStyle(color: Style.primaryTextColor, fontSize: 14),
-  //                   ),
-  //                 ],
-  //               ),
-  //             ],
-  //           ),
-  //         ),
-  //       )
-  //       .toList();
-  // }
+// getExpenseItemss(AsyncSnapshot<QuerySnapshot> snapshot) {
+//   return snapshot.data.docs
+//       .map(
+//         (doc) => Container(
+//           margin: EdgeInsets.only(left: 15,right: 15,top: 15),
+//           padding: EdgeInsets.all(15),
+//           decoration: BoxDecoration(
+//             color: Colors.white,
+//             boxShadow: [Style.boxShadow],
+//             borderRadius: BorderRadius.circular(10),
+//           ),
+//           child: Column(
+//             children: [
+//               Row(
+//                 children: [
+//                   Text(
+//                     doc["title"],
+//                     style: TextStyle(color: Style.primaryTextColor, fontSize: 16, fontWeight: FontWeight.bold),
+//                   ),
+//                 ],
+//               ),
+//               Row(
+//                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                 children: [
+//                   Text(
+//                     doc["locationName"],
+//                     style: TextStyle(color: Style.primaryTextColor, fontSize: 14),
+//                   ),
+//
+//                   Text(
+//                     doc["startDate"],
+//                     style: TextStyle(color: Style.primaryTextColor, fontSize: 14),
+//                   ),
+//                 ],
+//               ),
+//             ],
+//           ),
+//         ),
+//       )
+//       .toList();
+// }
 }
