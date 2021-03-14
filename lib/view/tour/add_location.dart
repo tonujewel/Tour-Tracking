@@ -3,9 +3,9 @@ import 'package:get/get.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:tourtracking/controller/search_controller.dart';
 import 'package:tourtracking/main.dart';
-import 'package:tourtracking/widget/app_with_back.dart';
 import 'package:tourtracking/widget/customLoader.dart';
 import 'package:tourtracking/widget/customTextField.dart';
+import 'package:tourtracking/widget/custom_appbar.dart';
 import 'add_tour.dart';
 
 class AddLocation extends StatefulWidget {
@@ -26,14 +26,14 @@ class _AddLocationState extends State<AddLocation> {
         child: Scaffold(
           appBar: PreferredSize(
             preferredSize: Size(double.infinity, kToolbarHeight),
-            child: CustomAppbarBack(title: "Add Location"),
+            child: CustomAppbar(title: "Add Location"),
           ),
           body: Column(
             children: [
               Row(
                 children: [
                   Padding(
-                    padding:  EdgeInsets.only(left: 10.0, top: 12.0, bottom: 12.0, right: 10.0),
+                    padding: EdgeInsets.only(left: 10.0, top: 12.0, bottom: 12.0, right: 10.0),
                     child: Container(
                         width: mainWidth * .8,
                         child: CustomTextField(controller: searchController.searchTextController, hints: 'Search')),

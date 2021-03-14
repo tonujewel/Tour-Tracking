@@ -12,11 +12,10 @@ class CustomAppbar extends StatelessWidget {
     return AppBar(
       backgroundColor: Style.appbarBackground,
       elevation: 0,
-      title: Center(
-        child: Text(
-          '$title',
-          style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w500),
-        ),
+      centerTitle: true,
+      title: Text(
+        '$title',
+        style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w500),
       ),
     );
   }

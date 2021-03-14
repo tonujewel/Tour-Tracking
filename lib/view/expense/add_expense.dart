@@ -48,11 +48,14 @@ class _AddExpenseState extends State<AddExpense> {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(top:15,bottom: 15),
-            child: Text("Total Expense : $totalAmount",style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold,color: Style.primaryTextColor),),
+            padding: const EdgeInsets.only(top: 15, bottom: 15),
+            child: Text(
+              "Total Expense : $totalAmount",
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Style.primaryTextColor),
+            ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left:8.0,right: 8),
+            padding: const EdgeInsets.only(left: 8.0, right: 8),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -83,8 +86,10 @@ class _AddExpenseState extends State<AddExpense> {
               ],
             ),
           ),
-          SizedBox(height: size.height * 0.03,),
-          Divider(thickness: 1 ),
+          SizedBox(
+            height: size.height * 0.03,
+          ),
+          Divider(thickness: 1),
           Expanded(
             child: StreamBuilder<QuerySnapshot>(
               stream: FirebaseFirestore.instance.collectionGroup('expense${widget.tripID}}').snapshots(),

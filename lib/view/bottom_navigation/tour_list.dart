@@ -93,33 +93,44 @@ class _TourListScreenState extends State<TourListScreen> {
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Hero(
-                                    tag: "${snapshot[index]['trip_id']}",
-                                    child: CircleAvatar(
-                                      radius: Get.height * .034,
-                                      backgroundColor: Style.primaryColor,
-                                      child: CircleAvatar(
-                                        radius: Get.height * .033,
-                                        backgroundImage: NetworkImage(
-                                          "${snapshot[index]['image']}",
+                                  Row(
+                                    children: [
+                                      Hero(
+                                        tag: "${snapshot[index]['trip_id']}",
+                                        child: CircleAvatar(
+                                          radius: Get.height * .034,
+                                          backgroundColor: Style.primaryColor,
+                                          child: CircleAvatar(
+                                            radius: Get.height * .033,
+                                            backgroundImage: NetworkImage(
+                                              "${snapshot[index]['image']}",
+                                            ),
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ),
-                                  SizedBox(width: Get.width * .02),
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "${snapshot[index]['title']}",
-                                        style: TextStyle(color: Style.primaryTextColor, fontSize: 16),
-                                      ),
-                                      Text(
-                                        "${snapshot[index]['startDate']}",
-                                        style: TextStyle(color: Style.primaryTextColor, fontSize: 14),
+                                      SizedBox(width: Get.width * .02),
+                                      Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "${snapshot[index]['title']}",
+                                            style: TextStyle(color: Style.primaryTextColor, fontSize: 16),
+                                          ),
+                                          Text(
+                                            "${snapshot[index]['startDate']}",
+                                            style: TextStyle(color: Style.primaryTextColor, fontSize: 14),
+                                          ),
+                                        ],
                                       ),
                                     ],
+                                  ),
+                                  GestureDetector(
+                                    onTap: () async {
+                                      await collectionReference.doc(snapshot[index].id).delete();
+                                    },
+                                    child: Icon(Icons.delete_rounded),
                                   ),
                                 ],
                               ),

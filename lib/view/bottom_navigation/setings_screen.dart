@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:tourtracking/controller/settings_controller.dart';
 import 'package:tourtracking/main.dart';
 import 'package:tourtracking/style/style.dart';
+import 'package:tourtracking/view/auth/changePassword.dart';
 import 'package:tourtracking/widget/custom_background.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -75,7 +76,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           SizedBox(height: size.height * .04, width: size.height * .02),
           profileSection(size, context),
           earningContainer(size),
-          changePassword(size, "Update password"),
+        //  changePassword(size, "Change password"),
           changePassword(size, "About us"),
         ],
       ),
@@ -85,7 +86,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   GestureDetector changePassword(Size size, String text) {
     return GestureDetector(
       onTap: () {
-        // Get.to(ChangePassword());
+         Get.to(ChangePassword());
       },
       child: Container(
         margin: EdgeInsets.only(left: 15, right: 15, top: 15),
