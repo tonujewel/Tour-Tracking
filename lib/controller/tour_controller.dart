@@ -40,8 +40,6 @@ class TourController extends GetxController {
   }
 
   Future<void> selectStartDate(BuildContext context) async {
-    print("clicke");
-
     final DateTime picked = await showDatePicker(
       context: context,
       firstDate: DateTime(2015, 8),
@@ -85,17 +83,12 @@ class TourController extends GetxController {
       update();
       final extension = p.extension(file.toString()); // '.dart'
 
-      print("path $file");
-
       UploadTask task = FirebaseStorage.instance.ref().child('tour').child("$randomNumber$extension").putFile(file);
 
       task.then((TaskSnapshot snapshot) async {
         print('Upload complete! $snapshot.');
-
         String downloadURL = await FirebaseStorage.instance.ref("tour/$randomNumber$extension").getDownloadURL();
-
         imageUrl.value = downloadURL;
-
         randNumber = randomNumber.toString();
         print('image url $downloadURL');
       }).catchError((Object e) {
@@ -104,12 +97,9 @@ class TourController extends GetxController {
 
       isLoading.value = false;
       update();
-
     } else {
       isLoading.value = false;
       update();
-
-
       print('No Image Path Received');
     }
   }

@@ -4,14 +4,12 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tourtracking/language/language_service.dart';
+import 'package:tourtracking/view/about_us.dart';
 import 'package:tourtracking/view/splash/splash_screen.dart';
 import 'package:tourtracking/view/tour/tour_details.dart';
 
-
-
 SharedPreferences prefs;
 double mainHeight, mainWidth, paddingTop, paddingBottom;
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

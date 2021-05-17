@@ -19,8 +19,8 @@ class LoginController extends GetxController {
   @override
   void onInit() {
     if (kDebugMode) {
-      emailController.text = "tonujewel@gmail.com";
-      passwordController.text = "123456";
+      // emailController.text = "tonujewel@gmail.com";
+      // passwordController.text = "123456";
     }
 
     super.onInit();
